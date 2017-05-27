@@ -1,0 +1,17 @@
+{
+  "name": "ragnar",
+  "version": "0.0.1",
+  "description": "Reactive architecture for Angular applications",
+  "main": "./lib/Ragnar.js",
+  "scripts": {
+    "start": "webpack --watch",
+    "build": "webpack --optimize-minimize",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "@b_donchenko",
+  "license": "ISC",
+  "devDependencies": {
+    "ts-loader": "^2.1.0",
+    "typescript": "2.3.2"
+  }
+}
