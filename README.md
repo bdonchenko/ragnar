@@ -16,19 +16,17 @@ Let's consider main idea of Ragnar architecture - Unidirectional Dataflow.
 
 2. StoreAccessor, Services and Actions are singletons.
 
-#### More complex example
+### More complex example
+
 ![Alt text](/readme/complicated_arch.png?raw=true)
 
 ## Sample
 
-<code>
+```
 git clone https://github.com/BohdanDonchenko/ragnar.git ragnar-sample
-
 cd ragnar-sample
-
-npm install 
-
+npm install
 npm start
-</code>
+```
 
 
