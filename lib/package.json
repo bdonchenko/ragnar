@@ -1,13 +1,14 @@
 {
   "name": "ragnar",
-  "version": "0.0.10",
+  "version": "0.1.0",
   "description": "Reactive architecture for Angular applications",
+  "keywords": ["angular", "architecture", "reactive", "flux"],
   "main": "Ragnar.js",
   "types": "Ragnar.d.ts",
   "author": "@b_donchenko",
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com/BohdanDonchenko/ragnar.git"
+    "url": "https://github.com/bdonchenko/ragnar.git"
   }
 }
