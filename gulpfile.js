@@ -9,11 +9,11 @@ gulp.task('default', function() {
         .pipe(tsProject());
     
     tsResult.dts
-        .pipe(concat('Ragnar.d.ts'))
+        //.pipe(concat('Ragnar.d.ts'))
         .pipe(gulp.dest('lib'));
     
     tsResult.js
-        .pipe(concat('Ragnar.js'))
+        //.pipe(concat('Ragnar.js'))
         .pipe(gulp.dest('lib'));
 });
 

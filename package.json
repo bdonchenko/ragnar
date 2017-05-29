@@ -1,6 +1,6 @@
 {
   "name": "ragnar",
-  "version": "0.0.4",
+  "version": "0.0.1",
   "description": "Reactive architecture for Angular applications",
   "main": "./lib/Ragnar.js",
   "types": "./lib/Ragnar.d.ts",
