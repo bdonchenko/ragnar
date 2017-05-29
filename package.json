@@ -1,8 +1,9 @@
 {
   "name": "ragnar",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Reactive architecture for Angular applications",
   "main": "./lib/Ragnar.js",
+  "types": "./lib/Ragnar.d.ts",
   "scripts": {
     "build": "gulp"
   },
