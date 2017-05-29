@@ -23,8 +23,8 @@ Let's consider main idea of Ragnar architecture - Unidirectional Dataflow.
 ## Sample
 
 ```
-git clone https://github.com/BohdanDonchenko/ragnar.git ragnar-sample
-cd ragnar-sample
+git clone https://github.com/BohdanDonchenko/ragnar.git ragnar
+cd ragnar/sample
 npm install
 npm start
 ```

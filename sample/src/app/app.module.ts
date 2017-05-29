@@ -24,6 +24,10 @@ import { PeopleComponent } from "./components/people/people.component";
 })
 export class AppModule {
   constructor(private injector: Injector) {
+    /* 
+    We need to instantiate every service because 
+    they are not going to be injected in any component 
+    */
     injector.get(PeopleService);
   }
 }
