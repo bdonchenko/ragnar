@@ -1,4 +1,4 @@
-# Reactive architecture for Angular applications
+# Ragnar - Reactive architecture for Angular applications
 
 ## Installation
 
