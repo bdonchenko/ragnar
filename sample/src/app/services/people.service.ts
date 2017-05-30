@@ -10,9 +10,7 @@ export class PeopleService {
         private storeAccessor: StoreAccessor,
         addPersonAction: AddPersonAction
     ) {
-        addPersonAction.subscribe(person => {
-            this.addPerson(person);
-        });
+        addPersonAction.subscribe(person => this.addPerson(person));
     }
 
     addPerson(person: Person): void {

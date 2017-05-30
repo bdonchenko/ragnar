@@ -19,9 +19,7 @@ var store_1 = require("./store");
 var StoreAccessor = (function (_super) {
     __extends(StoreAccessor, _super);
     function StoreAccessor(store) {
-        var _this = _super.call(this, store) || this;
-        _this.store = store;
-        return _this;
+        return _super.call(this, store) || this;
     }
     return StoreAccessor;
 }(BaseStoreAccessor_1.BaseStoreAccessor));

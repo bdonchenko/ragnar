@@ -15,9 +15,7 @@ var PeopleService = (function () {
     function PeopleService(storeAccessor, addPersonAction) {
         var _this = this;
         this.storeAccessor = storeAccessor;
-        addPersonAction.subscribe(function (person) {
-            _this.addPerson(person);
-        });
+        addPersonAction.subscribe(function (person) { return _this.addPerson(person); });
     }
     PeopleService.prototype.addPerson = function (person) {
         person.age = person.age * 10;

@@ -5,7 +5,7 @@ import { Store } from "./store";
 @Injectable()
 export class StoreAccessor extends BaseStoreAccessor<Store> {
 
-    constructor(private store: Store) {
+    constructor(store: Store) {
         super(store);
     }
 }

@@ -12,6 +12,7 @@ export class AppComponent {
     private addPersonAction: AddPersonAction
   ) {
 
+    //User activity simulation
     let i = 0;
     setInterval(() => {
       i++;

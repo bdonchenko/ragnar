@@ -57,7 +57,7 @@ import { Store } from "./store";
 @Injectable()
 export class StoreAccessor extends BaseStoreAccessor<Store> {
 
-    constructor(private store: Store) {
+    constructor(store: Store) {
         super(store);
     }
 }
@@ -67,7 +67,7 @@ export class StoreAccessor extends BaseStoreAccessor<Store> {
 
 Whole business logic of app is in Services. Service is singleton. Ragnar does not allow us to inject Services. So it should be instantiated in Composition Root. In our case it is AppModule.
 
-Services inject StoreAccessor for updating Store and Actions for listening them.
+Services use StoreAccessor for updating Store and Actions for listening them.
 
 ``` typescript
 import { Injectable } from '@angular/core';
@@ -82,9 +82,7 @@ export class PeopleService {
         private storeAccessor: StoreAccessor,
         addPersonAction: AddPersonAction
     ) {
-        addPersonAction.subscribe(person => {
-            this.addPerson(person);
-        });
+        addPersonAction.subscribe(person => this.addPerson(person));
     }
 
     addPerson(person: Person): void {
@@ -136,7 +134,37 @@ export class AppModule {
 
 ### 4. Components
 
-Last but not least - Components. Components are View layer of the application. They contain only render logic and can update themselves by listening Store:
+Last but not least - Components. Components are View layer of the application. They contain only render logic, can dispatch Actions in response to User activity and update themselves by listening Store:
+
+```typescript
+import { Component } from '@angular/core';
+import { BaseComponent } from "ragnar/BaseComponent";
+import { AddPersonAction } from "../../actions/add-person.action";
+import { Person } from "../../models/person.model";
+
+@Component({
+  selector: 'my-app',
+  template: `<people></people>`
+})
+export class AppComponent {
+  constructor(
+    private addPersonAction: AddPersonAction
+  ) {
+
+    //User activity simulation
+    let i = 0;
+    setInterval(() => {
+      i++;
+      let person = {
+        name: "Person " + i,
+        age: i
+      };
+
+      this.addPersonAction.dispatch(person);
+    }, 1000);
+  }
+}
+```
 
 ``` typescript
 import { Component } from '@angular/core';
@@ -144,7 +172,6 @@ import { BaseComponent } from "ragnar/BaseComponent";
 import { Person } from "../../models/person.model";
 import { StoreAccessor } from "../../store-accessor";
 import { Store } from "../../store";
-
 
 @Component({
   selector: 'people',

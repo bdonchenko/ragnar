@@ -14,6 +14,7 @@ var AppComponent = (function () {
     function AppComponent(addPersonAction) {
         var _this = this;
         this.addPersonAction = addPersonAction;
+        //User activity simulation
         var i = 0;
         setInterval(function () {
             i++;
