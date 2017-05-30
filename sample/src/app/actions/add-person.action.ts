@@ -3,6 +3,4 @@ import { Person } from "../models/person.model";
 import { BaseAction } from "ragnar/BaseAction";
 
 @Injectable()
-export class AddPersonAction extends BaseAction<Person> {
-
-}
+export class AddPersonAction extends BaseAction<Person> {}
