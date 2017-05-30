@@ -19,6 +19,10 @@ var people_component_1 = require("./components/people/people.component");
 var AppModule = (function () {
     function AppModule(injector) {
         this.injector = injector;
+        /*
+        We need to instantiate every service because
+        they are not going to be injected in any component
+        */
         injector.get(people_service_1.PeopleService);
     }
     return AppModule;

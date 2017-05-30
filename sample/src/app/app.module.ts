@@ -1,4 +1,4 @@
-import { NgModule, ReflectiveInjector, Injector } from '@angular/core';
+import { NgModule, Injector } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { PeopleService } from "./services/people.service";
