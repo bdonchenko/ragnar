@@ -1,20 +1,16 @@
 import { IAction } from "./IAction";
+import { Subject } from 'rxjs/Subject';
+import { Subscription } from 'rxjs/Subscription';
 
 export abstract class BaseAction<T> implements IAction<T> {
+    
+    private subject: Subject<T> = new Subject<T>();
 
-    private subscribers: ((data: T) => void)[] = [];
-
-    subscribe(callback: (data: T) => void): () => void {
-        this.subscribers.push(callback);
-
-        return () => {
-            this.subscribers = this.subscribers.filter(s => s !== callback);
-        }
+    subscribe(callback: (data: T) => void): Subscription {
+        return this.subject.subscribe(callback);
     }
 
     dispatch(data: T): void {
-        this.subscribers
-            .reverse()
-            .forEach(callback => callback(data));
+        this.subject.next(data);
     }
 }

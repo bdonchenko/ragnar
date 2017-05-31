@@ -1,32 +1,28 @@
 import { IStoreAccessor } from "./IStoreAccessor";
-import {IStore} from "./IStore";
+import { IStore } from "./IStore";
+import { Subject } from 'rxjs/Subject';
+import { Subscription } from 'rxjs/Subscription';
 
 export abstract class BaseStoreAccessor<T extends IStore> implements IStoreAccessor {
-    
+
+    private subject: Subject<T> = new Subject<T>();
     private static store: IStore;
-    private subscribers: ((store: T) => void)[] = [];
 
     constructor(store: T) {
         BaseStoreAccessor.store = store;
     }
 
-    subscribeStore(callback: (store: T) => void, executeImmediately: boolean): () => void {
-        this.subscribers.push(callback);
-
+    subscribe(callback: (store: T) => void, executeImmediately: boolean): Subscription {
         if (executeImmediately) {
             callback(<T>BaseStoreAccessor.store);
         }
 
-        return () => {
-            this.subscribers = this.subscribers.filter(s => s !== callback);
-        }
+        return this.subject.subscribe(callback);
     }
 
     updateStore(updateFunc: (store: T) => IStore): void {
-        BaseStoreAccessor.store = updateFunc(<T>Object.assign({}, BaseStoreAccessor.store));
-        
-        this.subscribers
-            .reverse()
-            .forEach(callback => callback(<T>BaseStoreAccessor.store));
+        const store = updateFunc(<T>Object.assign({}, BaseStoreAccessor.store));
+        BaseStoreAccessor.store = store;
+        this.subject.next(<T>Object.assign({}, store));
     }
 }

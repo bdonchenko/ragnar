@@ -14,7 +14,7 @@ export class PeopleService {
     }
 
     addPerson(person: Person): void {
-        person.age = person.age * 10;
+        person.age = person.age + 1;
 
         this.storeAccessor.updateStore(store => {
             store.people.push(person)

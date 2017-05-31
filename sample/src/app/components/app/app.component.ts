@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { BaseComponent } from "ragnar/BaseComponent";
 import { AddPersonAction } from "../../actions/add-person.action";
 import { Person } from "../../models/person.model";
 
@@ -8,10 +7,7 @@ import { Person } from "../../models/person.model";
   template: `<people></people>`
 })
 export class AppComponent {
-  constructor(
-    private addPersonAction: AddPersonAction
-  ) {
-
+  constructor(private addPersonAction: AddPersonAction) {
     //User activity simulation
     let i = 0;
     setInterval(() => {

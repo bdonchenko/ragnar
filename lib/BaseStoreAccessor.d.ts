@@ -1,9 +1,10 @@
 import { IStoreAccessor } from "./IStoreAccessor";
 import { IStore } from "./IStore";
+import { Subscription } from 'rxjs/Subscription';
 export declare abstract class BaseStoreAccessor<T extends IStore> implements IStoreAccessor {
+    private subject;
     private static store;
-    private subscribers;
     constructor(store: T);
-    subscribeStore(callback: (store: T) => void, executeImmediately: boolean): () => void;
+    subscribe(callback: (store: T) => void, executeImmediately: boolean): Subscription;
     updateStore(updateFunc: (store: T) => IStore): void;
 }

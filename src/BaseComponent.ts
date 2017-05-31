@@ -1,9 +1,12 @@
 import { IStoreAccessor } from "./IStoreAccessor";
 import { IComponent } from "./IComponent";
 import { IStore } from "./IStore";
+import { Subscription } from 'rxjs/Subscription';
+import { IAction } from "./IAction";
 
 export abstract class BaseComponent implements IComponent {
-    protected storeUnsubscribe: () => void;
+    
+    protected subscriptions: Subscription[] = [];
 
     constructor(protected storeAccessor?: IStoreAccessor) {}
 
@@ -12,16 +15,18 @@ export abstract class BaseComponent implements IComponent {
             return;
         }
 
-        this.storeUnsubscribe =
+        let subscription =
                 this.storeAccessor
-                    .subscribeStore(store => this.onStoreUpdated(store), readStoreDataImmediately);
+                    .subscribe(store => this.onStoreUpdated(store), readStoreDataImmediately);
+
+        this.subscriptions.push(subscription);
     }
 
     ngOnDestroy(): void {
-        if (this.storeUnsubscribe) {
-            this.storeUnsubscribe();
-        }
+        this.subscriptions.forEach(s => s.unsubscribe());
+        console.log('Unsubscribed:', this.subscriptions.map(s => s.closed));
     }
 
+    //Will be called when Store is updated. Should be overwritten in derived classes
     onStoreUpdated(store: IStore): void {}
 }

@@ -4,16 +4,17 @@ var concat = require('gulp-concat');
 
 var tsProject = ts.createProject('tsconfig.json');
 
-gulp.task('default', function() {
-    var tsResult = gulp.src('src/**/*.ts')
-        .pipe(tsProject());
-    
-    tsResult.dts
-        //.pipe(concat('Ragnar.d.ts'))
-        .pipe(gulp.dest('lib'));
-    
-    tsResult.js
-        //.pipe(concat('Ragnar.js'))
+gulp.task('copy', function(){
+    gulp.src('./README.md')
         .pipe(gulp.dest('lib'));
 });
+
+
+gulp.task('scripts', function() {
+    gulp.src('src/**/*.ts')
+        .pipe(tsProject())
+        .pipe(gulp.dest('lib'));
+});
+
+gulp.task('default', ['scripts', 'copy']);
 

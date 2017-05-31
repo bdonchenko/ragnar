@@ -18,5 +18,8 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/BohdanDonchenko/ragnar.git"
+  },
+  "dependencies": {
+    "rxjs": "^5.4.0"
   }
 }

@@ -24,16 +24,19 @@ var PeopleComponent = (function (_super) {
         return _this;
     }
     PeopleComponent.prototype.onStoreUpdated = function (store) {
-        this.people = store.people.sort(function (a, b) {
-            return b.age - a.age;
-        });
+        this.people =
+            store.people
+                .sort(function (a, b) {
+                return b.age - a.age;
+            })
+                .slice(0, 20);
     };
     return PeopleComponent;
 }(BaseComponent_1.BaseComponent));
 PeopleComponent = __decorate([
     core_1.Component({
         selector: 'people',
-        template: "<ul>\n    <li *ngFor=\"let person of people\">{{person.name}} is {{person.age}} years old.</li>\n  </ul>"
+        template: "\n    <ul>\n      <li *ngFor=\"let person of people\">{{person.name}} is {{person.age}} years old.</li>\n    </ul>"
     }),
     __metadata("design:paramtypes", [store_accessor_1.StoreAccessor])
 ], PeopleComponent);
