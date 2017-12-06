@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "strict": true,
+    //"strict": true,
     "target": "es5",
     "module": "es2015",
     "declaration": false,
@@ -18,15 +18,15 @@
     "strictFunctionTypes": true,
     "noImplicitReturns": true,
     "skipLibCheck": true,
-    "lib": ["es6", "dom"],
+    "lib": ["es2017", "dom"],
     "outDir": "./dist/",
-    "typeRoots": ["./node_modules/@types/"]
+    "typeRoots": ["node_modules/@types"]
   },
   "compileOnSave": false,
   "buildOnSave": false,
   "include": ["./src/**/*"],
   "exclude": [
-    "node_modules/*",
+    "node_modules",
     "dist/*",
     "dist-serve/*",
     "node/*",

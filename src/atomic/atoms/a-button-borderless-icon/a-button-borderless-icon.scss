@@ -1,0 +1,32 @@
+@import '../../../base/variables';
+
+.a-button-borderless-icon {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  color: $a-color-black-n50;
+  cursor: pointer;
+  user-select: none;
+
+  &:hover {
+    background-color: $a-button-borderless-icon-color;
+  }
+}
+
+.a-button-borderless-icon__label {
+  margin-left: 4px;
+  color: $a-color-black-n50;
+}
+
+.a-button-borderless-icon_active {
+  background-color: $a-color-primary-n1;
+  box-shadow: inset 0 1px 1px 0 $a-color-black-n30;
+
+  .a-button-borderless-icon__icon {
+    color: $a-color-white-n100;
+  }
+
+  &:hover {
+    background-color: $a-color-primary-n1-btn-hover;
+  }
+}

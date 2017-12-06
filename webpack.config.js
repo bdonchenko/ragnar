@@ -1,6 +1,5 @@
 "use strict";
 
-//это node модули и webpack плагины, которые понадобятся нам в разработке
 const path = require("path");
 const fs = require("fs");
 const webpack = require("webpack");
@@ -8,7 +7,6 @@ const WebpackOnBuildPlugin = require("on-build-webpack");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const AotPlugin = require("@ngtools/webpack").AotPlugin;
 
-//помните, в package.json были команды serve, hmr, prod и т. д.? так вот, текущую команду (например, если вы введете npm run serve, то команда будет называться ‘serve’) можно получить и обработать вот так:
 const ENV = process.env.npm_lifecycle_event
   ? process.env.npm_lifecycle_event
   : "";
@@ -37,11 +35,11 @@ module.exports = function makeWebpackConfig() {
   }
 
   config.entry = {
-    "ng-app": "./src/app/ng-main.ts"
+    "ng-app": "./src/ng-main.ts"
   };
 
   if (isAot) {
-    config.entry["ng-app"] = "./src/app/ng-main-aot.ts";
+    config.entry["ng-app"] = "./src/ng-main-aot.ts";
   }
 
   config.output = isTest
@@ -109,6 +107,16 @@ module.exports = function makeWebpackConfig() {
     ]
   };
 
+  if (isTest) {
+    config.module.rules.push({
+      test: /\.ts$/,
+      enforce: "post",
+      include: path.resolve("src"),
+      loader: "istanbul-instrumenter-loader",
+      exclude: [/\.spec\.ts$/, /\.e2e\.ts$/, /node_modules/]
+    });
+  }
+
   if (!isTest) {
     config.plugins = [
       new webpack.NoEmitOnErrorsPlugin(),
@@ -162,6 +170,16 @@ module.exports = function makeWebpackConfig() {
         console.log("build in aot is done");
       })
     ];
+
+    config.stats = {
+      assets: true,
+      chunks: false,
+      children: false,
+      errors: true,
+      errorDetails: true,
+      timings: true,
+      warnings: true
+    };
   }
 
   config.devServer = {
@@ -178,10 +196,11 @@ module.exports = function makeWebpackConfig() {
     inline: isHmr || isStatic || isProdServer,
     hot: isHmr,
     stats: "minimal",
-    port: 9000,
+    port: 3000,
     overlay: {
       errors: true
     },
+    clientLogLevel: "none",
     watchOptions: {
       aggregateTimeout: 50,
       ignored: /node_modules/
