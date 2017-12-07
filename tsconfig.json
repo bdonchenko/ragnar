@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    //"strict": true,
+    "strict": true,
     "target": "es5",
     "declaration": false,
     "moduleResolution": "node",
@@ -10,16 +10,17 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "removeComments": false,
-    "noImplicitAny": false,
+    "noImplicitAny": true,
     "suppressImplicitAnyIndexErrors": true,
     "forceConsistentCasingInFileNames": true,
     "noUnusedLocals": true,
-    "strictFunctionTypes": true,
+    "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
     "skipLibCheck": true,
     "lib": ["es2017", "dom"],
     "outDir": "./dist/",
-    "typeRoots": ["node_modules/@types"]
+    "typeRoots": ["node_modules/@types"],
+    "pretty": true
   },
   "compileOnSave": false,
   "buildOnSave": false,
