@@ -19,7 +19,10 @@ const cssRules = [
   {
     loader: 'postcss-loader',
     options: {
-      sourceMap: 'inline'
+      sourceMap: 'inline',
+      config: {
+        path: './configs/postcss.config.js'
+      }
     }
   },
   { loader: 'resolve-url-loader' },
