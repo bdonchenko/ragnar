@@ -1,21 +1,21 @@
-"use strict";
+'use strict';
 
-const path = require("path");
-const fs = require("fs");
-const webpack = require("webpack");
-const WebpackOnBuildPlugin = require("on-build-webpack");
-const CopyWebpackPlugin = require("copy-webpack-plugin");
-const AotPlugin = require("@ngtools/webpack").AotPlugin;
+const path = require('path');
+const fs = require('fs');
+const webpack = require('webpack');
+const WebpackOnBuildPlugin = require('on-build-webpack');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const AngularCompilerPlugin = require('@ngtools/webpack').AngularCompilerPlugin;
 
 const ENV = process.env.npm_lifecycle_event
   ? process.env.npm_lifecycle_event
-  : "";
-const isStatic = ENV === "serve";
-const isHmr = ENV === "hmr";
-const isProd = ENV === "prod";
-const isTest = ENV === "test";
-const isAot = ENV.includes("aot");
-const isProdServer = ENV.includes("prodServer");
+  : '';
+const isStatic = ENV === 'serve';
+const isHmr = ENV === 'hmr';
+const isProd = ENV === 'prod';
+const isTest = ENV === 'test';
+const isAot = ENV.includes('aot');
+const isProdServer = ENV.includes('prodServer');
 
 module.exports = function makeWebpackConfig() {
   console.log(`You are in ${ENV} mode`);
@@ -23,41 +23,43 @@ module.exports = function makeWebpackConfig() {
   let config = {};
 
   if (isProdServer) {
-    if (!fs.existsSync("./dist")) {
+    if (!fs.existsSync('./dist')) {
       throw "Can't find ./dist, please use 'npm run prod' to get it.";
     }
   }
 
   if (isHmr || isStatic) {
-    config.devtool = "inline-source-map";
+    config.devtool = 'inline-source-map';
   } else {
-    config.devtool = "source-map";
+    config.devtool = 'source-map';
   }
 
   config.entry = {
-    "ng-app": "./src/ng-main.ts"
+    polyfills: './src/polyfills.ts',
+    vendor: './src/vendor.ts',
+    app: './src/main.ts'
   };
 
   if (isAot) {
-    config.entry["ng-app"] = "./src/ng-main-aot.ts";
+    config.entry['app'] = './src/main.aot.ts';
   }
 
   config.output = isTest
     ? {}
     : {
-        path: root("./dist"),
-        filename: "[name].js"
+        path: root('./dist'),
+        filename: '[name].js'
       };
 
   if (isProdServer) {
     config.entry = {
-      server: "./webpack-prod-server.js"
+      server: './webpack-prod-server.js'
     };
     config.output = {};
   }
 
   config.resolve = {
-    extensions: [".ts", ".js", ".json", ".html", ".less", ".svg"]
+    extensions: ['.ts', '.js', '.json', '.html', '.less', '.svg']
   };
 
   config.module = {
@@ -65,22 +67,22 @@ module.exports = function makeWebpackConfig() {
       {
         test: /\.ts$/,
         use: isAot
-          ? [{ loader: "@ngtools/webpack" }]
+          ? [{ loader: '@ngtools/webpack' }]
           : [
               {
-                loader: "awesome-typescript-loader?"
+                loader: 'awesome-typescript-loader?'
               },
               {
-                loader: "angular2-template-loader"
+                loader: 'angular2-template-loader'
               },
               {
-                loader: "angular-router-loader"
+                loader: 'angular-router-loader'
               }
             ].concat(
               isHmr
-                ? "@angularclass/hmr-loader?pretty=" +
+                ? '@angularclass/hmr-loader?pretty=' +
                   !isProd +
-                  "&prod=" +
+                  '&prod=' +
                   isProd
                 : []
             ),
@@ -88,20 +90,20 @@ module.exports = function makeWebpackConfig() {
       },
       {
         test: /\.html$/,
-        loader: "raw-loader",
-        exclude: [/node_modules\/(?!(ng2-.+))/, root("src/index.html")]
+        loader: 'raw-loader',
+        exclude: [/node_modules\/(?!(ng2-.+))/, root('src/index.html')]
       },
       {
         test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: "url-loader?name=[name].[ext]&limit=10000&useRelativePath=true"
+        loader: 'url-loader?name=[name].[ext]&limit=10000&useRelativePath=true'
       },
       {
         test: /\.less$/,
         use: [
-          { loader: "css-to-string-loader" },
-          { loader: "css-loader" },
-          { loader: "postcss-loader" },
-          { loader: "less-loader" }
+          { loader: 'css-to-string-loader' },
+          { loader: 'css-loader' },
+          { loader: 'postcss-loader' },
+          { loader: 'less-loader' }
         ]
       }
     ]
@@ -110,9 +112,9 @@ module.exports = function makeWebpackConfig() {
   if (isTest) {
     config.module.rules.push({
       test: /\.ts$/,
-      enforce: "post",
-      include: path.resolve("src"),
-      loader: "istanbul-instrumenter-loader",
+      enforce: 'post',
+      include: path.resolve('src'),
+      loader: 'istanbul-instrumenter-loader',
       exclude: [/\.spec\.ts$/, /\.e2e\.ts$/, /node_modules/]
     });
   }
@@ -121,7 +123,7 @@ module.exports = function makeWebpackConfig() {
     config.plugins = [
       new webpack.NoEmitOnErrorsPlugin(),
       new webpack.DefinePlugin({
-        "process.env": {
+        'process.env': {
           STATIC: isStatic,
           HMR: isHmr,
           PROD: isProd,
@@ -129,16 +131,16 @@ module.exports = function makeWebpackConfig() {
         }
       }),
       new WebpackOnBuildPlugin(stats => {
-        console.log("build is done");
+        console.log('build is done');
       })
     ].concat(isHmr ? new webpack.HotModuleReplacementPlugin() : []);
   }
 
   if (isAot) {
     config.plugins = [
-      new AotPlugin({
-        tsConfigPath: "./tsconfig.json",
-        entryModule: root("src/app/app.module.ts#AppModule")
+      new AngularCompilerPlugin({
+        tsConfigPath: './tsconfig.json',
+        entryModule: root('src/app/app.module.ts#AppModule')
       }),
       new webpack.optimize.UglifyJsPlugin({
         compress: {
@@ -159,15 +161,15 @@ module.exports = function makeWebpackConfig() {
         sourceMap: true
       }),
       new CopyWebpackPlugin([
-        { from: "index.html", context: "./src" },
-        { from: "assets/themes/base/fonts/**/*", context: "./src" },
+        { from: 'index.html', context: './src' },
+        { from: 'assets/themes/base/fonts/**/*', context: './src' },
         {
-          from: "assets/themes/base/images/other-images/**/*",
-          context: "./src"
+          from: 'assets/themes/base/images/other-images/**/*',
+          context: './src'
         }
       ]),
       new WebpackOnBuildPlugin(stats => {
-        console.log("build in aot is done");
+        console.log('build in aot is done');
       })
     ];
 
@@ -183,24 +185,24 @@ module.exports = function makeWebpackConfig() {
   }
 
   config.devServer = {
-    contentBase: isProdServer ? "./dist" : "./src",
+    contentBase: isProdServer ? './dist' : './src',
     headers: {
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
-      "Access-Control-Allow-Headers":
-        "X-Requested-With, content-type, Authorization"
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+      'Access-Control-Allow-Headers':
+        'X-Requested-With, content-type, Authorization'
     },
     historyApiFallback: true,
     compress: true,
     quiet: false,
     inline: isHmr || isStatic || isProdServer,
     hot: isHmr,
-    stats: "minimal",
+    stats: 'minimal',
     port: 3000,
     overlay: {
       errors: true
     },
-    clientLogLevel: "none",
+    clientLogLevel: 'none',
     watchOptions: {
       aggregateTimeout: 50,
       ignored: /node_modules/
@@ -210,6 +212,6 @@ module.exports = function makeWebpackConfig() {
   return config;
 };
 
-function root(__path = ".") {
+function root(__path = '.') {
   return path.join(__dirname, __path);
 }
