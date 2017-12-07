@@ -4,6 +4,16 @@
   "description": "angular webpack",
   "author": "@bdonchenko",
   "license": "MIT",
+  "scripts": {
+    "prestart": "npm prune && npm i",
+    "start":
+      "webpack-dev-server --config ./configs/webpack.dev.js --profile --watch --progress --open",
+    "build":
+      "rimraf ./dist && webpack --config ./configs/webpack.prod.js --progress --profile --bail",
+    "buildRun":
+      "webpack-dev-server --config ./configs/webpack.prod.js --profile --progress --open",
+    "test": "karma start"
+  },
   "dependencies": {
     "@angular/animations": "^5.0.0",
     "@angular/common": "^5.0.0",
@@ -35,10 +45,7 @@
     "es6-shim": "^0.35.1",
     "hammerjs": "^2.0.8",
     "html-webpack-plugin": "^2.29.0",
-    "less": "^2.7.2",
-    "less-loader": "^4.0.3",
     "on-build-webpack": "^0.1.0",
-    "raw-loader": "^0.5.1",
     "postcss-loader": "^1.3.3",
     "style-loader": "^0.17.0",
     "tslint": "^5.7.0",
@@ -49,14 +56,5 @@
     "webpack-merge": "^3.0.0",
     "html-loader": "^0.4.3",
     "html-webpack-plugin": "^2.16.1"
-  },
-
-  "scripts": {
-    "prestart": "npm prune && npm i",
-    "start":
-      "webpack-dev-server --config ./configs/webpack.dev.js --profile --watch --progress --open",
-    "prod": "rimraf ./dist && webpack --config ./configs/webpack.prod.js --progress --profile --bail",
-    "prodServer": "webpack-dev-server --config ./configs/webpack.prod.js --open",
-    "test": "karma start"
   }
 }
