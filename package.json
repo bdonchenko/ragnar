@@ -45,17 +45,18 @@
     "rimraf": "^2.6.1",
     "url-loader": "^0.5.8",
     "webpack": "^3.5.5",
-    "webpack-dev-server": "^2.7.1"
+    "webpack-dev-server": "^2.7.1",
+    "webpack-merge": "^3.0.0",
+    "html-loader": "^0.4.3",
+    "html-webpack-plugin": "^2.16.1"
   },
 
   "scripts": {
     "prestart": "npm prune && npm i",
     "start":
-      "webpack-dev-server --config ./webpack.config.js --profile --watch --progress",
-    "prod": "npm run aot",
-    "prodServer": "webpack-dev-server --config ./webpack.config.js --open",
-    "clean": "rimraf ./dist",
-    "aot": "webpack",
+      "webpack-dev-server --config ./webpack.dev.js --profile --watch --progress --open",
+    "prod": "rimraf ./dist && webpack --config config/webpack.prod.js --progress --profile --bail",
+    "prodServer": "webpack-dev-server --config ./webpack.prod.js --open",
     "test": "karma start"
   }
 }

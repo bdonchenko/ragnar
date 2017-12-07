@@ -1,14 +1,13 @@
+import { enableProdMode } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppModule } from './app/app.module';
-import './polyfills';
+//import './polyfills';
 
-if (process.env.STATIC) {
-  //console.log("******************You are in Dev mode******************");
-  platformBrowserDynamic()
-    .bootstrapModule(AppModule)
-    .then((): any => {});
-} 
-
-export function main() {
-  return platformBrowserDynamic().bootstrapModule(AppModule);
+if (process.env.ENV === 'production') {
+  enableProdMode();
 }
+
+platformBrowserDynamic()
+  .bootstrapModule(AppModule)
+  // tslint:disable-next-line:no-console
+  .catch(err => console.log(err));
