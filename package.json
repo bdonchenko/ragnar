@@ -1,8 +1,8 @@
 {
-  "name": "angular-project",
+  "name": "Ragnar",
   "version": "1.0.0",
-  "description": "angular scaffolding",
-  "author": "maxim1006",
+  "description": "angular webpack",
+  "author": "@bdonchenko",
   "license": "MIT",
   "dependencies": {
     "@angular/animations": "^5.0.0",
@@ -54,9 +54,9 @@
   "scripts": {
     "prestart": "npm prune && npm i",
     "start":
-      "webpack-dev-server --config ./webpack.dev.js --profile --watch --progress --open",
-    "prod": "rimraf ./dist && webpack --config config/webpack.prod.js --progress --profile --bail",
-    "prodServer": "webpack-dev-server --config ./webpack.prod.js --open",
+      "webpack-dev-server --config ./configs/webpack.dev.js --profile --watch --progress --open",
+    "prod": "rimraf ./dist && webpack --config ./configs/webpack.prod.js --progress --profile --bail",
+    "prodServer": "webpack-dev-server --config ./configs/webpack.prod.js --open",
     "test": "karma start"
   }
 }
