@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const SassLintPlugin = require('sasslint-webpack-plugin');
 const helpers = require('./helpers');
 
 const ENV = process.env.npm_lifecycle_event
@@ -7,6 +8,28 @@ const ENV = process.env.npm_lifecycle_event
   : '';
 
 console.log(`You are in ${ENV} mode`);
+
+const cssRules = [
+  {
+    loader: 'css-loader',
+    options: {
+      sourceMap: true
+    }
+  },
+  {
+    loader: 'postcss-loader',
+    options: {
+      sourceMap: 'inline'
+    }
+  },
+  { loader: 'resolve-url-loader' },
+  {
+    loader: 'sass-loader',
+    options: {
+      sourceMap: true
+    }
+  }
+];
 
 module.exports = {
   entry: {
@@ -44,15 +67,10 @@ module.exports = {
         test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
         loader: 'file-loader?name=assets/[name].[hash].[ext]'
       },
-      // {
-      //   test: /\.css$/,
-      //   exclude: helpers.root('src', 'app'),
-      //   loader: ExtractTextPlugin.extract({ fallbackLoader: 'style-loader', loader: 'css-loader?sourceMap' })
-      // },
       {
-        test: /\.css$/,
-        include: helpers.root('src', 'app'),
-        loader: 'raw-loader'
+        test: /\.(scss|sass|css)$/i,
+        issuer: [{ not: [{ test: /\.html$/i }] }],
+        use: ['css-to-string-loader','style-loader', ...cssRules]
       }
     ]
   },
@@ -65,13 +83,12 @@ module.exports = {
       helpers.root('./src'), // location of your src
       {} // a map of your routes
     ),
-
-    new webpack.optimize.CommonsChunkPlugin({
-      name: ['app', 'vendor', 'polyfills']
-    }),
-
     new HtmlWebpackPlugin({
       template: 'src/index.html'
-    })
+    }),
+    new SassLintPlugin({
+      configFile: '.sasslintrc',
+      failOnError: true
+    }),
   ]
 };
