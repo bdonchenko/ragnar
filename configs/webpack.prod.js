@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
 const SassLintPlugin = require('sasslint-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const commonConfig = require('./webpack.common.js');
 const helpers = require('./helpers');
 
@@ -41,7 +42,11 @@ module.exports = webpackMerge(commonConfig, {
       configFile: '.sasslintrc',
       failOnError: true,
       failOnWarning: true
-    })
+    }),
+    new CopyWebpackPlugin([
+      { from: 'src/assets', to: 'assets' },
+      { from: 'src/favicon.ico' }
+    ])
   ],
 
   devServer: {
