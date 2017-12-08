@@ -9,7 +9,7 @@ module.exports = webpackMerge(commonConfig, {
   devtool: 'source-map',
 
   output: {
-    path: helpers.root('dist'),
+    path: helpers.root('dist/build'),
     publicPath: '/',
     filename: '[name].[hash].js',
     chunkFilename: '[id].[hash].chunk.js'
@@ -39,7 +39,7 @@ module.exports = webpackMerge(commonConfig, {
   ],
 
   devServer: {
-    contentBase: './dist',
+    contentBase: './build/dist',
     historyApiFallback: true,
     port: 3000
   }

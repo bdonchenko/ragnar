@@ -20,7 +20,7 @@
     "noImplicitReturns": true,
     "skipLibCheck": true,
     "lib": ["es2017", "dom"],
-    "outDir": "./dist/",
+    "outDir": "./build/dist/",
     "typeRoots": ["node_modules/@types"],
     "types": ["jasmine", "node"]
   },
@@ -29,7 +29,7 @@
   "include": ["../src/**/*.spec.ts", "../**/*.d.ts"],
   "exclude": [
     "node_modules",
-    "dist/*",
+    "build/dist/*",
     "dist-serve/*",
     "node/*",
     "**/*.spec.ts"

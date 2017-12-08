@@ -18,7 +18,7 @@
     "noImplicitReturns": true,
     "skipLibCheck": true,
     "lib": ["es2017", "dom"],
-    "outDir": "./dist/",
+    "outDir": "./build/dist/",
     "typeRoots": ["node_modules/@types"],
     "pretty": true
   },
@@ -27,7 +27,7 @@
   "include": ["./src/**/*"],
   "exclude": [
     "node_modules",
-    "dist/*",
+    "build/dist/*",
     "dist-serve/*",
     "node/*",
     "**/*.spec.ts"
