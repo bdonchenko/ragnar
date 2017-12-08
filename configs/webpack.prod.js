@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
+const SassLintPlugin = require('sasslint-webpack-plugin');
 const commonConfig = require('./webpack.common.js');
 const helpers = require('./helpers');
 
@@ -9,7 +10,7 @@ module.exports = webpackMerge(commonConfig, {
   devtool: 'source-map',
 
   output: {
-    path: helpers.root('dist/build'),
+    path: helpers.root('build/dist'),
     publicPath: '/',
     filename: '[name].[hash].js',
     chunkFilename: '[id].[hash].chunk.js'
@@ -35,6 +36,11 @@ module.exports = webpackMerge(commonConfig, {
     }),
     new webpack.optimize.CommonsChunkPlugin({
       name: ['app', 'vendor', 'polyfills']
+    }),
+    new SassLintPlugin({
+      configFile: '.sasslintrc',
+      failOnError: true,
+      failOnWarning: true
     })
   ],
 

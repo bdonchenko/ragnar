@@ -7,8 +7,8 @@
   "scripts": {
     "prestart": "npm prune && npm i",
     "start": "webpack-dev-server --config ./configs/webpack.dev.js --profile --watch --progress --open",
-    "build": "rimraf ./build/dist && webpack --config ./configs/webpack.prod.js --progress --profile --bail",
-    "buildRun": "webpack-dev-server --config ./configs/webpack.prod.js --profile --progress --open",
+    "build": "rimraf ./build/dist && webpack --config ./configs/webpack.prod.js --profile --bail",
+    "buildServer": "webpack-dev-server --config ./configs/webpack.prod.js --profile --progress --open",
     "test": "jest --watchAll --coverage=false",
     "testbuild": "jest --coverage=true --runInBand"
   },

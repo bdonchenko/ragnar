@@ -1,4 +1,5 @@
 const webpackMerge = require('webpack-merge');
+const SassLintPlugin = require('sasslint-webpack-plugin');
 const commonConfig = require('./webpack.common.js');
 const helpers = require('./helpers');
 
@@ -12,7 +13,13 @@ module.exports = webpackMerge(commonConfig, {
     chunkFilename: '[id].chunk.js'
   },
 
-  plugins: [],
+  plugins: [
+    new SassLintPlugin({
+      configFile: '.sasslintrc',
+      failOnError: true,
+      failOnWarning: false
+    })
+  ],
 
   devServer: {
     contentBase: './src',

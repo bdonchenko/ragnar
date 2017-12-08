@@ -1,6 +1,5 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const SassLintPlugin = require('sasslint-webpack-plugin');
 const helpers = require('./helpers');
 
 const ENV = process.env.npm_lifecycle_event
@@ -88,10 +87,6 @@ module.exports = {
     ),
     new HtmlWebpackPlugin({
       template: 'src/index.html'
-    }),
-    new SassLintPlugin({
-      configFile: '.sasslintrc',
-      failOnError: true
-    }),
+    })
   ]
 };
