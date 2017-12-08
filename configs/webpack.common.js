@@ -72,18 +72,22 @@ module.exports = {
       {
         test: /\.(scss|sass|css)$/i,
         issuer: [{ not: [{ test: /\.html$/i }] }],
-        use: ['css-to-string-loader','style-loader', ...cssRules]
+        use: ['css-to-string-loader', 'style-loader', ...cssRules]
       }
     ]
   },
 
   plugins: [
     // Workaround for angular/angular#11580
+    // new webpack.ContextReplacementPlugin(
+    //   // The (\\|\/) piece accounts for path separators in *nix and Windows
+    //   /angular(\\|\/)core(\\|\/)@angular/,
+    //   helpers.root('./src'), // location of your src
+    //   {} // a map of your routes
+    // ),
     new webpack.ContextReplacementPlugin(
-      // The (\\|\/) piece accounts for path separators in *nix and Windows
-      /angular(\\|\/)core(\\|\/)@angular/,
-      helpers.root('./src'), // location of your src
-      {} // a map of your routes
+      /\@angular(\\|\/)core(\\|\/)esm5/,
+      helpers.root('./src')
     ),
     new HtmlWebpackPlugin({
       template: 'src/index.html'
