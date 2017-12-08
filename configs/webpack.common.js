@@ -2,11 +2,13 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const helpers = require('./helpers');
 
-const ENV = process.env.npm_lifecycle_event
+const npmScript = process.env.npm_lifecycle_event
   ? process.env.npm_lifecycle_event
   : '';
+  console.log(`You are in ${npmScript} mode`);
 
-console.log(`You are in ${ENV} mode`);
+const env = process.env.NODE_ENV || 'local';
+
 
 const cssRules = [
   {
@@ -41,7 +43,10 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['.ts', '.js', '.json', '.html', '.sass', '.svg']
+    extensions: ['.ts', '.js', '.json', '.html', '.sass', '.svg'],
+    alias: {
+      environment: helpers.root(`environments/${env}.js`)
+    }
   },
 
   module: {
@@ -78,13 +83,7 @@ module.exports = {
   },
 
   plugins: [
-    // Workaround for angular/angular#11580
-    // new webpack.ContextReplacementPlugin(
-    //   // The (\\|\/) piece accounts for path separators in *nix and Windows
-    //   /angular(\\|\/)core(\\|\/)@angular/,
-    //   helpers.root('./src'), // location of your src
-    //   {} // a map of your routes
-    // ),
+    // Workaround for angular/angular#20357
     new webpack.ContextReplacementPlugin(
       /\@angular(\\|\/)core(\\|\/)esm5/,
       helpers.root('./src')

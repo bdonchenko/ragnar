@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { HomeModule } from './modules/home/home.module';
 
 export class MyHammerConfig extends HammerGestureConfig {
-  overrides = <any>{
+  overrides = {
     swipe: { velocity: 0.4, threshold: 20 } // override default settings
   };
 }

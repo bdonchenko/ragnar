@@ -19,8 +19,7 @@
     "skipLibCheck": true,
     "lib": ["es2017", "dom"],
     "outDir": "./build/dist/",
-    "typeRoots": ["node_modules/@types"],
-    "pretty": true
+    "typeRoots": ["node_modules/@types"]
   },
   "compileOnSave": false,
   "buildOnSave": false,

@@ -3,18 +3,12 @@
     "align": [false, "parameters", "arguments", "statements"],
     "ban": false,
     "class-name": true,
-    // "comment-format": [
-    //     true,
-    //     "check-space"
-    // ],
     "curly": true,
     "eofline": false,
     "forin": true,
     "indent": [true, "spaces"],
     "interface-name": [true],
     "jsdoc-format": true,
-    // "jsx-no-lambda": false,
-    // "jsx-no-multiline-js": false,
     "label-position": true,
     // "max-line-length": [
     //     true,
@@ -24,13 +18,14 @@
       true,
       {
         "order": [
-          "public-before-private",
-          "static-before-instance",
-          "variables-before-functions"
+          "static-field",
+          "instance-field",
+          "static-method",
+          "instance-method"
         ]
       }
     ],
-    "no-any": false,
+    "no-any": true,
     "no-arg": true,
     "no-bitwise": true,
     "no-console": [
@@ -54,8 +49,6 @@
     "no-switch-case-fall-through": true,
     "no-trailing-whitespace": false,
     "no-unused-expression": true,
-    "no-unused-variable": true,
-    "no-use-before-declare": true,
     "one-line": [
       true,
       "check-catch",

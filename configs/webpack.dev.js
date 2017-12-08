@@ -1,9 +1,20 @@
 const webpackMerge = require('webpack-merge');
 const SassLintPlugin = require('sasslint-webpack-plugin');
 const commonConfig = require('./webpack.common.js');
+const HappyPack = require('happypack');
 const helpers = require('./helpers');
 
 module.exports = webpackMerge(commonConfig, {
+  module: {
+    rules: [
+      {
+        enforce: 'pre',
+        test: /\.ts$/,
+        use: 'happypack/loader?id=tslint'
+      }
+    ]
+  },
+
   devtool: 'cheap-module-eval-source-map',
 
   output: {
@@ -18,6 +29,21 @@ module.exports = webpackMerge(commonConfig, {
       configFile: '.sasslintrc',
       failOnError: true,
       failOnWarning: false
+    }),
+    new HappyPack({
+      id: 'tslint',
+      threads: 5,
+      loaders: [
+        {
+          path: 'tslint-loader',
+          query: {
+            failOnHint: false,
+            emitErrors: true,
+            fix: true,
+            configFile: './tslint.json'
+          }
+        }
+      ]
     })
   ],
 
