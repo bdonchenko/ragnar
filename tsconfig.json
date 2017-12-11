@@ -5,7 +5,7 @@
     "declaration": false,
     "moduleResolution": "node",
     "sourceRoot": "./src",
-    "baseUrl": "./src",
+    //"baseUrl": "./src/app",
     "sourceMap": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
