@@ -1,3 +1,5 @@
+import { HomeStore } from 'app/store/home/home-store';
+
 export class Store {
-  counter = 0;
+  homeStore = new HomeStore();
 }

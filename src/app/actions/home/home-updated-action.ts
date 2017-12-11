@@ -11,7 +11,7 @@ export class HomeUpdatedAction extends BaseAction {
   }
 
   protected callback(store: Store): Store | Promise<Store> {
-    store.counter = this.numberService.getRandomValue();
+    store.homeStore.counter = this.numberService.getRandomValue();
     return store;
   }
 }

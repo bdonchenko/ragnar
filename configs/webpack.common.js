@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const helpers = require('./helpers');
-const { TsConfigPathsPlugin, CheckerPlugin  } = require('awesome-typescript-loader');
+const { TsConfigPathsPlugin } = require('awesome-typescript-loader');
 
 const npmScript = process.env.npm_lifecycle_event
   ? process.env.npm_lifecycle_event
@@ -92,7 +92,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: 'src/index.html'
     }),
-    new TsConfigPathsPlugin(),
-    new CheckerPlugin()
+    new TsConfigPathsPlugin()
   ]
 };
