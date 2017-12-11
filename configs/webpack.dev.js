@@ -28,7 +28,7 @@ module.exports = webpackMerge(commonConfig, {
   plugins: [
     new SassLintPlugin({
       configFile: '.sasslintrc',
-      failOnError: true,
+      failOnError: false,
       failOnWarning: false
     }),
     new HappyPack({
