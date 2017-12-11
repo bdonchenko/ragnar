@@ -3,6 +3,7 @@ const SassLintPlugin = require('sasslint-webpack-plugin');
 const commonConfig = require('./webpack.common.js');
 const HappyPack = require('happypack');
 const helpers = require('./helpers');
+const Visualizer = require('webpack-visualizer-plugin');
 
 module.exports = webpackMerge(commonConfig, {
   module: {
@@ -44,11 +45,12 @@ module.exports = webpackMerge(commonConfig, {
           }
         }
       ]
-    })
+    }),
+    new Visualizer({ filename: './statistics.html' })
   ],
 
   devServer: {
-    contentBase: './src',
+    contentBase: './build/dist',
     headers: {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
