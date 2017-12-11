@@ -1,14 +1,14 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const helpers = require('./helpers');
+const { TsConfigPathsPlugin, CheckerPlugin  } = require('awesome-typescript-loader');
 
 const npmScript = process.env.npm_lifecycle_event
   ? process.env.npm_lifecycle_event
   : '';
-  console.log(`You are in ${npmScript} mode`);
+console.log(`You are in ${npmScript} mode`);
 
 const env = process.env.NODE_ENV || 'local';
-
 
 const cssRules = [
   {
@@ -44,6 +44,7 @@ module.exports = {
 
   resolve: {
     extensions: ['.ts', '.js', '.json', '.html', '.sass', '.svg'],
+    modules: [helpers.root('./src'), helpers.root('./node_modules')],
     alias: {
       environment: helpers.root(`environments/${env}.js`)
     }
@@ -90,6 +91,8 @@ module.exports = {
     ),
     new HtmlWebpackPlugin({
       template: 'src/index.html'
-    })
+    }),
+    new TsConfigPathsPlugin(),
+    new CheckerPlugin()
   ]
 };

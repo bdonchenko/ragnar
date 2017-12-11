@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { Store } from '../../store/store';
-import { StoreAccessor } from '../../store/store-accessor';
-import { BaseComponent } from '../base-component';
+import { BaseComponent } from 'app/components/base-component';
+import { Store } from 'app/store/store';
+import { StoreAccessor } from 'app/store/store-accessor';
 
 @Component({
   selector: 'home-component',

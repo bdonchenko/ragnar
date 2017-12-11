@@ -5,7 +5,7 @@
     "declaration": false,
     "moduleResolution": "node",
     "sourceRoot": "./src",
-    //"baseUrl": "./src/app",
+    "baseUrl": "./src",
     "sourceMap": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
@@ -34,7 +34,8 @@
   "awesomeTypescriptLoaderOptions": {
     "forkChecker": true,
     "useWebpackText": true,
-    "useCache": true
+    "useCache": true,
+    "resolveGlobs": true
   },
   "angularCompilerOptions": {
     "genDir": ".",

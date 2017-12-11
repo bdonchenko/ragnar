@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
+import { Store } from 'app/store/store';
 import { Subject } from 'rxjs/Subject';
 import { Subscription } from 'rxjs/Subscription';
-import { Store } from './store';
 
 @Injectable()
 export class StoreAccessor {
