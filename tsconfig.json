@@ -32,10 +32,10 @@
     "**/*.spec.ts"
   ],
   "awesomeTypescriptLoaderOptions": {
-    "forkChecker": true,
-    "useWebpackText": true,
-    "useCache": true,
-    "resolveGlobs": true
+    "forkChecker": true
+    //"useWebpackText": true,
+    //"useCache": true,
+    //"resolveGlobs": true
   },
   "angularCompilerOptions": {
     "genDir": ".",

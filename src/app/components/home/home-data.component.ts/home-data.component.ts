@@ -7,6 +7,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class HomeDataComponent {
   @Input() data: number;
+  @Input() title: string;
   @Output() onUpdated = new EventEmitter<boolean>();
 
   click() {
