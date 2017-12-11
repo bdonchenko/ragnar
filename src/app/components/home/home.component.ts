@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { HomeServerUpdatedAction } from 'app/actions/home/home-server-updated-action';
-import { HomeUpdatedAction } from 'app/actions/home/home-updated-action';
+import { HomeServerUpdatedAction } from 'app/actions/home/home-server-updated.action';
+import { HomeUpdatedAction } from 'app/actions/home/home-updated.action';
 import { BaseComponent } from 'app/components/base-component';
 import { Store } from 'app/store/store';
 import { StoreAccessor } from 'app/store/store-accessor';

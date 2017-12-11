@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { ValuesRepository } from 'app/repositories/values-repository';
+import { ValuesRepository } from 'app/repositories/values.repository';
 
 @NgModule({
   providers: [ValuesRepository]

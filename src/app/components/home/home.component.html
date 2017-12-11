@@ -1,7 +1,4 @@
 <h2>Home</h2>
-<button (click)="update()">Update</button>
-<h3>Value: {{data}}</h3>
 
-<button (click)="serverUpdate()">Server Update</button>
-<h3>Sever Value: {{serverData}}</h3>
-
+<home-data-component [data]="data" (onUpdated)="update($event)"></home-data-component>
+<home-data-component [data]="serverData" (onUpdated)="serverUpdate($event)"></home-data-component>
