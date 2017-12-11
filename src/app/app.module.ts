@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, HammerGestureConfig } from '@angular/platform-browser';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './components/app.component';
-import { HomeModule } from './components/home/home.module';
-import { StoreModule } from './store/store.module';
+import { ActionsModule } from 'app/actions/actions.module';
+import { AppRoutingModule } from 'app/app-routing.module';
+import { AppComponent } from 'app/components/app.component';
+import { HomeModule } from 'app/components/home/home.module';
+import { StoreModule } from 'app/store/store.module';
 
 export class MyHammerConfig extends HammerGestureConfig {
   overrides = {
@@ -13,7 +14,7 @@ export class MyHammerConfig extends HammerGestureConfig {
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, HomeModule, AppRoutingModule, StoreModule],
+  imports: [BrowserModule, HomeModule, AppRoutingModule, ActionsModule, StoreModule],
   providers: [],
   bootstrap: [AppComponent]
 })

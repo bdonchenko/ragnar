@@ -1,1 +1,3 @@
-export class Store {}
+export class Store {
+  counter = 0;
+}

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HomeUpdatedAction } from 'app/actions/home/home-updated-action';
 import { BaseComponent } from 'app/components/base-component';
 import { Store } from 'app/store/store';
 import { StoreAccessor } from 'app/store/store-accessor';
@@ -9,17 +10,19 @@ import { StoreAccessor } from 'app/store/store-accessor';
 })
 export class HomeComponent extends BaseComponent {
   data: string;
-  counter = 0;
 
-  constructor(storeAccessor: StoreAccessor) {
+  constructor(
+    storeAccessor: StoreAccessor,
+    private homeUpdatedAction: HomeUpdatedAction
+  ) {
     super(storeAccessor);
   }
 
   public onStoreUpdated(store: Store): void {
-    throw new Error('Method not implemented.');
+    this.data = 'update ' + store.counter;
   }
 
   update() {
-    this.data = 'text' + this.counter++;
+    this.homeUpdatedAction.execute();
   }
 }
