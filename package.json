@@ -4,10 +4,7 @@
   "description": "Reactive architecture for Angular applications",
   "author": "@b_donchenko",
   "license": "ISC",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/bdonchenko/ragnar.git"
-  },
+  "repository": "https://github.com/bdonchenko/ragnar.git",
   "scripts": {
     "prestart": "npm prune && npm i",
     "start": "webpack-dev-server --config ./configs/webpack.dev.js --profile --watch --progress",
@@ -67,5 +64,6 @@
     "webpack-dev-server": "^2.9.7",
     "webpack-merge": "^4.1.1",
     "webpack-visualizer-plugin": "^0.1.11"
-  }
+  },
+  "main": "index.js"
 }
