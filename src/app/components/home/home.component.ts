@@ -19,7 +19,7 @@ export class HomeComponent extends BaseComponent {
   }
 
   public onStoreUpdated(store: Store): void {
-    this.data = 'update ' + store.counter;
+    this.data = '' + store.counter;
   }
 
   update() {
