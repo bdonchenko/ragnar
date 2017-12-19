@@ -2,28 +2,31 @@
   "compilerOptions": {
     "strict": true,
     "target": "es5",
+    "allowJs": true,
     "declaration": false,
     "moduleResolution": "node",
-    "sourceRoot": "./src",
-    "baseUrl": "./src",
+    "module": "commonjs",
+    "sourceRoot": "../src",
+    "baseUrl": "../src",
     "sourceMap": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "removeComments": false,
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "suppressImplicitAnyIndexErrors": true,
     "forceConsistentCasingInFileNames": true,
     "noUnusedLocals": true,
-    "noFallthroughCasesInSwitch": true,
+    "strictFunctionTypes": true,
     "noImplicitReturns": true,
     "skipLibCheck": true,
     "lib": ["es2017", "dom"],
     "outDir": "./build/dist/",
-    "typeRoots": ["node_modules/@types"]
+    "typeRoots": ["node_modules/@types"],
+    "types": ["jasmine", "node"]
   },
   "compileOnSave": false,
   "buildOnSave": false,
-  "include": ["./src/**/*"],
+  "include": ["../src/**/*.spec.ts", "../**/*.d.ts"],
   "exclude": [
     "node_modules",
     "build/dist/*",
@@ -32,10 +35,9 @@
     "**/*.spec.ts"
   ],
   "awesomeTypescriptLoaderOptions": {
-    "forkChecker": true
-    //"useWebpackText": true,
-    //"useCache": true,
-    //"resolveGlobs": true
+    "forkChecker": true,
+    "useWebpackText": true,
+    "useCache": true
   },
   "angularCompilerOptions": {
     "genDir": ".",

@@ -1,0 +1,30 @@
+{
+  // Place your settings in this file to overwrite default and user settings.
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "**/test/coverage-jest": true,
+    "**/dist": true,
+    "scripts": true,
+    "coverage": true,
+    "dist": true,
+    "**/*.trx": true
+  },
+  "editor.tabSize": 2,
+  "tslint.enable": true,
+  "prettier.singleQuote": true,
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "eslint.enable": false,
+  "sasslint.configFile": ".sasslintrc",
+  "cSpell.words": [
+    "Arrangeable",
+    "Dropdown",
+    "Dropdowns",
+    "Inflights",
+    "Resizer",
+    "containerless",
+    "pannable",
+    "sasslintrc",
+    "simplebar"
+  ]
+}
