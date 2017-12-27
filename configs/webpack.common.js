@@ -91,7 +91,8 @@ module.exports = {
     ),
     new HtmlWebpackPlugin({
       template: 'src/index.html',
-      inject: false
+      chunksSortMode: 'manual',
+      chunks: ['polyfills', 'vendor', 'app'],
     }),
     new TsConfigPathsPlugin()
   ]
