@@ -1,5 +1,9 @@
 import { HomeStore } from 'app/store/home/home-store';
 
 export class Store {
-  homeStore = new HomeStore();
+  private _homeStore = new HomeStore();
+  
+  get homeStore(): HomeStore {
+    return this._homeStore;
+  }
 }

@@ -90,7 +90,8 @@ module.exports = {
       helpers.root('./src')
     ),
     new HtmlWebpackPlugin({
-      template: 'src/index.html'
+      template: 'src/index.html',
+      inject: false
     }),
     new TsConfigPathsPlugin()
   ]
