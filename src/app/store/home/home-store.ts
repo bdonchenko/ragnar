@@ -1,4 +1,3 @@
-//import { StoreItem } from 'app/store/store-item';
 import { BehaviorSubject } from 'rxjs';
 
 export class HomeStore {

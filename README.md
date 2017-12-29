@@ -1,4 +1,4 @@
-# Ragnar - Reactive architecture for Angular applications
+# Ragnar - Simple Reactive architecture for Angular applications
 
 ## Sample
 
@@ -10,15 +10,15 @@ npm start
 
 ## Description
 
-Bunch of classes and interfaces for building Reactive Angular applications. Inspired by FLUX/Redux.
+Bunch of classes and interfaces for building Simple Reactive Angular applications. Inspired by FLUX/Redux.
 
 Let's consider the main idea of Ragnar architecture - Unidirectional Dataflow.
 
 ![Alt text](/readme/simple_arch.png?raw=true)
 
-1. Store is only one. Store must be accessed through StoreAccessor.
+1. Store is only one. Store items are Rx Observables.
 
-2. Actions are updating Store through StoreAccessor.
+2. Actions are updating Store pushing payload to an Observable stream.
 
 3. Components are executing Actions and listening for Store updates to render prover view. Thats it! Nothing more!
 
@@ -27,97 +27,79 @@ Let's consider the main idea of Ragnar architecture - Unidirectional Dataflow.
 Application can have only ONE Store.
 
 Store is a place where we keep all our data. Data collections, state of components etc.
-That is created in StoreAccessor and can be accessed only through StoreAccessor.
 
-StoreAccessor provides following public methods:
-1. subscribe - called by Components to subscribe on Store updates.
-2. updateStore - called by Actions to update Store. Calling of updateStore is implemented in BaseAction and should not be called again elsewhere.
+Each value in the Store must be an Observable. Most appropriate implementation is BehaviourSubject:
 
 ``` typescript
-@Injectable()
-export class StoreAccessor {
-  private static store: Store = new Store();
-  private subject: Subject<Store> = new Subject<Store>();
+import { BehaviorSubject } from 'rxjs';
 
-  public subscribe(
-    callback: (store: Store) => void,
-    executeImmediately: boolean
-  ): Subscription {
-    if (executeImmediately) {
-      callback(StoreAccessor.store);
-    }
-
-    return this.subject.subscribe(callback);
+export class HomeStore {
+  private _counter$ = new BehaviorSubject<number | null>(null);
+  get counter$() {
+    return this._counter$;
   }
 
-  public async updateStore(
-    updateFunc: (store: Store) => Promise<Store> | Store
-  ): Promise<void> {
-    StoreAccessor.store = await updateFunc(StoreAccessor.store);
-    this.subject.next(Object.assign({}, StoreAccessor.store));
+  private _serverCounter$ = new BehaviorSubject<number>(0);
+  get serverCounter$() {
+    return this._serverCounter$;
   }
 }
+
 ```
 
 ### 2. Actions/Services
 
-Action is an independent box of business logic. Provides "execute" method defined in base class and being called by components. The result of action execution is updated store. It calls updatedStore method from StoreAccessor.
+Action is an independent box of business logic. Provides "execute" method defined in IAction of IDataAction interface and being called by components. 
 
-From development perspective we just have to implement "callback" method which is modifying store.
+The result of action is updated Store calling 'next' method of appropriate Store item.
 
 In case you have to reuse some piece of logic in another Action, please move it to Service. Sharing common logic among Actions is a life purpose of Services.
 
 ``` typescript
 @Injectable()
-export class HomeUpdatedAction extends BaseAction {
-  constructor(
-    storeAccessor: StoreAccessor,
-    private numberService: NumberService
-  ) {
-    super(storeAccessor);
-  }
+export class HomeUpdatedAction implements IAction {
+  constructor(private store: Store, private numberService: NumberService) {}
 
-  protected callback(store: Store): Store | Promise<Store> {
-    store.homeStore.counter = this.numberService.getRandomValue();
-    return store;
+  execute() {
+    const value = this.numberService.getRandomValue();
+    this.store.homeStore.counter$.next(value);
   }
 }
+
 ```
 
 ### 3. Components
 
-Last but not least - Components. Components are View layer of the application. They contain only render logic, can execute Actions in response to User activity and update themselves by listening Store.
-
-Communication with StoreAccessor is implemented in BaseComponent. So we have to only implement abstract method "onStoreUpdated" and that's it!
+Last but not least - Components. Components are View layer of the application. They contain only render logic, can execute Actions in response to User activity and update themselves by subscribing to Store items.
 
 ```typescript
 @Component({
   selector: 'home-component',
   templateUrl: 'home.component.html'
 })
-export class HomeComponent extends BaseComponent {
-  data: number;
-  serverData: number;
+export class HomeComponent {
+  data$: Observable<number | null>;
+  serverData$: Observable<number>;
+  serverFilteredData$: Observable<number>;
 
   constructor(
-    storeAccessor: StoreAccessor,
+    store: Store,
     private homeUpdatedAction: HomeUpdatedAction,
     private homeServerUpdatedAction: HomeServerUpdatedAction
   ) {
-    super(storeAccessor);
-  }
+    const home = store.homeStore;
 
-  public onStoreUpdated(store: Store): void {
-    this.data = store.homeStore.counter;
-    this.serverData = store.homeStore.serverCounter;
+    this.data$ = home.counter$;
+    this.serverData$ = home.serverCounter$;
+    this.serverFilteredData$ = home.serverCounter$.filter(v => v % 3 === 0);
   }
 
   update() {
-    this.homeUpdatedAction.execute();
+   this.homeUpdatedAction.execute();
   }
 
-  serverUpdate() {
-    this.homeServerUpdatedAction.execute();
+  async serverUpdate() {
+    await this.homeServerUpdatedAction.execute();
   }
 }
 
@@ -125,8 +107,11 @@ export class HomeComponent extends BaseComponent {
 ``` html
 <h2>Home</h2>
 
-<home-data-component title="Update" [data]="data" (onUpdated)="update($event)"></home-data-component>
-<home-data-component title="Server update" [data]="serverData" (onUpdated)="serverUpdate($event)"></home-data-component>
+<home-data-component title="Update" [data$]="data$" (onUpdated)="update($event)"></home-data-component>
+<home-data-component title="Server update" [data$]="serverData$" (onUpdated)="serverUpdate($event)"></home-data-component>
+<div>
+  Filtered Data: {{serverFilteredData$ | async}}
+</div>
 ```
 
 ### Real-world application example: 
