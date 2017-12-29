@@ -56,7 +56,8 @@ module.exports = {
         test: /\.ts$/,
         use: [
           {
-            loader: 'awesome-typescript-loader?'
+            loader: 'awesome-typescript-loader',
+            options: { configFileName: helpers.root('tsconfig.json') }
           },
           {
             loader: 'angular2-template-loader'
@@ -90,7 +91,9 @@ module.exports = {
       helpers.root('./src')
     ),
     new HtmlWebpackPlugin({
-      template: 'src/index.html'
+      template: 'src/index.html',
+      chunksSortMode: 'manual',
+      chunks: ['polyfills', 'vendor', 'app'],
     }),
     new TsConfigPathsPlugin()
   ]

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { HomeDataComponent } from 'app/components/home/home-data.component.ts/home-data.component';
+import { HomeDataComponent } from 'app/components/home/home-data.component/home-data.component';
 import { SharedModule } from '../shared/shared.module';
 import { HomeComponent } from './home.component';
 

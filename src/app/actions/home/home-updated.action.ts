@@ -1,20 +1,14 @@
 import { Injectable } from '@angular/core';
-import { BaseAction } from 'app/actions/base-action';
+import { IAction } from 'app/actions/i-action';
 import { NumberService } from 'app/services/number.service';
 import { Store } from 'app/store/store';
-import { StoreAccessor } from 'app/store/store-accessor';
 
 @Injectable()
-export class HomeUpdatedAction extends BaseAction {
-  constructor(
-    storeAccessor: StoreAccessor,
-    private numberService: NumberService
-  ) {
-    super(storeAccessor);
-  }
+export class HomeUpdatedAction implements IAction {
+  constructor(private store: Store, private numberService: NumberService) {}
 
-  protected callback(store: Store): Store | Promise<Store> {
-    store.homeStore.counter = this.numberService.getRandomValue();
-    return store;
+  execute() {
+    const value = this.numberService.getRandomValue();
+    this.store.homeStore.counter$.next(value);
   }
 }

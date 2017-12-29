@@ -1,36 +1,35 @@
 import { Component } from '@angular/core';
 import { HomeServerUpdatedAction } from 'app/actions/home/home-server-updated.action';
 import { HomeUpdatedAction } from 'app/actions/home/home-updated.action';
-import { BaseComponent } from 'app/components/base-component';
 import { Store } from 'app/store/store';
-import { StoreAccessor } from 'app/store/store-accessor';
+import { Observable } from 'rxjs/Rx';
 
 @Component({
   selector: 'home-component',
   templateUrl: 'home.component.html'
 })
-export class HomeComponent extends BaseComponent {
-  data: number;
-  serverData: number;
+export class HomeComponent {
+  data$: Observable<number | null>;
+  serverData$: Observable<number>;
+  serverFilteredData$: Observable<number>;
 
   constructor(
-    storeAccessor: StoreAccessor,
+    store: Store,
     private homeUpdatedAction: HomeUpdatedAction,
     private homeServerUpdatedAction: HomeServerUpdatedAction
   ) {
-    super(storeAccessor);
-  }
+    const home = store.homeStore;
 
-  public onStoreUpdated(store: Store): void {
-    this.data = store.homeStore.counter;
-    this.serverData = store.homeStore.serverCounter;
+    this.data$ = home.counter$;
+    this.serverData$ = home.serverCounter$;
+    this.serverFilteredData$ = home.serverCounter$.filter(v => v % 3 === 0);
   }
 
   update() {
-    this.homeUpdatedAction.execute();
+   this.homeUpdatedAction.execute();
   }
 
-  serverUpdate() {
-    this.homeServerUpdatedAction.execute();
+  async serverUpdate() {
+    await this.homeServerUpdatedAction.execute();
   }
 }

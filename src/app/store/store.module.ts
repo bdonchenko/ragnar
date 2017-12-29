@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
-import { StoreAccessor } from './store-accessor';
+import { Store } from 'app/store/store';
 
 @NgModule({
-  providers: [StoreAccessor]
+  providers: [Store]
 })
 export class StoreModule {}
