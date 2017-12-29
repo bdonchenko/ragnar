@@ -1,13 +1,14 @@
-import { StoreItem } from 'app/store/store-item';
+//import { StoreItem } from 'app/store/store-item';
+import { BehaviorSubject } from 'rxjs';
 
 export class HomeStore {
-  private _counter = new StoreItem<number>();
-  get counter() {
-    return this._counter;
+  private _counter$ = new BehaviorSubject<number | null>(null);
+  get counter$() {
+    return this._counter$;
   }
 
-  private _serverCounter = new StoreItem<number>();
-  get serverCounter() {
-    return this._serverCounter;
+  private _serverCounter$ = new BehaviorSubject<number>(0);
+  get serverCounter$() {
+    return this._serverCounter$;
   }
 }

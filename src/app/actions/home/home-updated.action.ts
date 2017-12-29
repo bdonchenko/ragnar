@@ -9,6 +9,6 @@ export class HomeUpdatedAction implements IAction {
 
   execute() {
     const value = this.numberService.getRandomValue();
-    this.store.homeStore.counter.setValue(value);
+    this.store.homeStore.counter$.next(value);
   }
 }

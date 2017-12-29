@@ -9,7 +9,7 @@ import { Observable } from 'rxjs/Rx';
   templateUrl: 'home.component.html'
 })
 export class HomeComponent {
-  data$: Observable<number>;
+  data$: Observable<number | null>;
   serverData$: Observable<number>;
   serverFilteredData$: Observable<number>;
 
@@ -20,9 +20,9 @@ export class HomeComponent {
   ) {
     const home = store.homeStore;
 
-    this.data$ = home.counter.value$;
-    this.serverData$ = home.serverCounter.value$;
-    this.serverFilteredData$ = home.serverCounter.value$.filter(v => v % 3 === 0);
+    this.data$ = home.counter$;
+    this.serverData$ = home.serverCounter$;
+    this.serverFilteredData$ = home.serverCounter$.filter(v => v % 3 === 0);
   }
 
   update() {

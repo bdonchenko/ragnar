@@ -12,6 +12,6 @@ export class HomeServerUpdatedAction implements IAction {
 
   async execute() {
     const value = await this.valuesRepository.getData();
-    this.store.homeStore.serverCounter.setValue(value);
+    this.store.homeStore.serverCounter$.next(value);
   }
 }
