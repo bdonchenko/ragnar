@@ -10,7 +10,7 @@ npm start
 
 ## Description
 
-Bunch of classes and interfaces for building Simple Reactive Angular applications. Inspired by FLUX/Redux.
+Bunch of classes and interfaces for building Reactive Angular applications. Inspired by FLUX/Redux.
 
 Let's consider the main idea of Ragnar architecture - Unidirectional Dataflow.
 
@@ -20,7 +20,7 @@ Let's consider the main idea of Ragnar architecture - Unidirectional Dataflow.
 
 2. Actions are updating Store pushing payload to an Observable stream.
 
-3. Components are executing Actions and listening for Store updates to render prover view. Thats it! Nothing more!
+3. Components are executing Actions and listening for Store updates to render prover view. That's it! Nothing more!
 
 ### 1. Store
 
@@ -28,7 +28,7 @@ Application can have only ONE Store.
 
 Store is a place where we keep all our data. Data collections, state of components etc.
 
-Each value in the Store must be an Observable. Most appropriate implementation is BehaviourSubject:
+Each value in the Store must be an Observable. Most appropriate implementation is BehaviorSubject - when a component is created and subscribed to a store item, it receives current store value.
 
 ``` typescript
 import { BehaviorSubject } from 'rxjs';
@@ -49,7 +49,7 @@ export class HomeStore {
 
 ### 2. Actions/Services
 
-Action is an independent box of business logic. Provides "execute" method defined in IAction of IDataAction interface and being called by components. 
+Action is an independent box of business logic. Provides "execute" method declared in IAction of IDataAction interface and being called by components. 
 
 The result of action is updated Store calling 'next' method of appropriate Store item.
 
@@ -114,6 +114,6 @@ export class HomeComponent {
 </div>
 ```
 
-### Real-world application example: 
+### Real-world application example:
 
 ![Alt text](/readme/complicated_arch.png?raw=true)
