@@ -10,8 +10,9 @@ export class HomeServerUpdatedAction implements IAction {
     private valuesRepository: ValuesRepository
   ) {}
 
-  async execute() {
-    const value = await this.valuesRepository.getData();
-    this.store.homeStore.serverCounter$.next(value);
+  execute() {
+    this.valuesRepository
+      .getData()
+      .subscribe(value => this.store.homeStore.serverCounter$.next(value));
   }
 }

@@ -91,8 +91,8 @@ export class HomeComponent {
    this.homeUpdatedAction.execute();
   }
 
-  async serverUpdate() {
-    await this.homeServerUpdatedAction.execute();
+  serverUpdate() {
+    this.homeServerUpdatedAction.execute();
   }
 }
 
