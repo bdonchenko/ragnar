@@ -44,7 +44,7 @@ module.exports = webpackMerge(commonConfig, {
       failOnWarning: true
     }),
     new CopyWebpackPlugin([
-      { from: 'src/assets', to: 'assets' },
+      //{ from: 'src/assets', to: 'assets' },
       { from: 'src/favicon.ico' }
     ])
   ],

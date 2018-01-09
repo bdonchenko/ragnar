@@ -19,7 +19,8 @@ module.exports = {
   collectCoverageFrom: [
     'src/**/*.{js,ts}',
     '!**/*.spec.{js,ts}',
-    '!**/node_modules/**'
+    '!**/node_modules/**',
+    '!**/*.d.ts',
   ],
   coverageDirectory: './test/coverage',
   coverageReporters: ['cobertura'],
