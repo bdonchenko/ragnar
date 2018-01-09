@@ -10,10 +10,6 @@
     "interface-name": [true],
     "jsdoc-format": true,
     "label-position": true,
-    // "max-line-length": [
-    //     true,
-    //     120
-    // ],
     "member-ordering": [
       true,
       {
@@ -89,7 +85,6 @@
       "check-operator",
       "check-separator",
       "check-type"
-      //"check-typecast"
     ],
     "jsx-wrap-multiline": false
   }

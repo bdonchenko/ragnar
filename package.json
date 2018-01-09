@@ -64,6 +64,5 @@
     "webpack-dev-server": "2.10.1",
     "webpack-merge": "4.1.1",
     "webpack-visualizer-plugin": "0.1.11"
-  },
-  "main": "index.js"
+  }
 }
