@@ -1,4 +1,18 @@
-# Ragnar - Simple Reactive architecture for Angular applications
+# Ragnar
+
+Ragnar is the Angular application architecture, inspired by FLUX and Redux. 
+
+It helps us write applications that behave consistently, can be easily tested and scaled. Unlike to Redux, we're operating not objects but classes which provides us an ability to make the code typed and check it for errors during TypeScript compilation. The main idea of Ragnar architecture - Unidirectional Dataflow:
+
+![Alt text](/readme/simple_arch.png?raw=true)
+
+1. The Store is only one. Store items are Rx.Observables.
+
+2. Action executes business logic and updates the Store by sending a payload to an Observable stream.
+
+3. Component executes Actions and listens for Store updates to render prover view. 
+
+That's it! Nothing more!
 
 ## Sample
 
@@ -8,43 +22,32 @@ cd ragnar
 npm start
 ```
 
-## Description
-
-Bunch of classes and interfaces for building Reactive Angular applications. Inspired by FLUX/Redux.
-
-Let's consider the main idea of Ragnar architecture - Unidirectional Dataflow.
-
-![Alt text](/readme/simple_arch.png?raw=true)
-
-1. Store is only one. Store items are Rx Observables.
-
-2. Actions are updating Store pushing payload to an Observable stream.
-
-3. Components are executing Actions and listening for Store updates to render prover view. That's it! Nothing more!
-
 ### 1. Store
 
-Application can have only ONE Store.
+Store is a single immutable data structure.
 
-Store is a place where we keep all our data. Data collections, state of components etc.
+It is a place where we keep all our data. Data collections, state of components etc.
 
-Each value in the Store must be an Observable. Most appropriate implementation is BehaviorSubject - when a component is created and subscribed to a store item, it receives current store value.
+Each value in the Store must be an Observable and read-only. Observable streams and can be defined ONLY during an application initialization.
+
+Most appropriate implementation for Store items is Rx.BehaviorSubject - when a component is created and subscribed to a store item, it receives current value from a stream.
 
 ``` typescript
-import { BehaviorSubject } from 'rxjs';
+export class Store {
+  readonly homeStore = new HomeStore();
+}
 
 export class HomeStore {
   readonly counter$ = new BehaviorSubject<number | null>(null);
   readonly serverCounter$ = new BehaviorSubject<number>(0);
 }
-
 ```
 
-### 2. Actions/Services
+### 2. Action
 
-Action is an independent box of business logic. Provides "execute" method declared in IAction of IDataAction interface and being called by components. 
+Action is an injectable class. It is an independent piece of business logic. Provides "execute(payload: T)" method declared in IAction or IDataAction interface and being called by components. 
 
-The result of action is updated Store calling 'next' method of appropriate Store item.
+The result of action execution is updated Store.
 
 In case you have to reuse some piece of logic in another Action, please move it to Service. Sharing common logic among Actions is a life purpose of Services.
 
@@ -58,12 +61,25 @@ export class HomeUpdatedAction implements IAction {
     this.store.homeStore.counter$.next(value);
   }
 }
-
 ```
 
-### 3. Components
+### 3. Component
 
-Last but not least - Components. Components are View layer of the application. They contain only render logic, can execute Actions in response to User activity and update themselves by subscribing to Store items.
+Components are view layer of the application. They call execute method of Actions in response to User activity and re-render themselves by subscribing to Store items.
+
+They receive initial state during subscribing to Store items thanks to Rx.BehaviorSubject implementation.
+
+The powerful feature of Angular is "async" pipe. Now we do not need to subscribe/unsubscribe to Store items. Angular takes care of it!
+
+``` html
+<h2>Home</h2>
+
+<home-data-component title="Update" [data$]="data$" (onUpdated)="update($event)"></home-data-component>
+<home-data-component title="Server update" [data$]="serverData$" (onUpdated)="serverUpdate($event)"></home-data-component>
+<div>
+  Filtered Data: {{serverFilteredData$ | async}}
+</div>
+```
 
 ```typescript
 @Component({
@@ -95,17 +111,8 @@ export class HomeComponent {
     this.homeServerUpdatedAction.execute();
   }
 }
-
 ```
-``` html
-<h2>Home</h2>
 
-<home-data-component title="Update" [data$]="data$" (onUpdated)="update($event)"></home-data-component>
-<home-data-component title="Server update" [data$]="serverData$" (onUpdated)="serverUpdate($event)"></home-data-component>
-<div>
-  Filtered Data: {{serverFilteredData$ | async}}
-</div>
-```
 
 ### Real-world application example:
 
