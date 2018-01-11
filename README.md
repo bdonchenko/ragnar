@@ -2,15 +2,15 @@
 
 Ragnar is the Angular application architecture, inspired by FLUX and Redux. 
 
-It helps us write applications that behave consistently, can be easily tested and scaled. Unlike to Redux, we're operating not objects but classes which provides us an ability to make the code typed and check it for errors during TypeScript compilation. The main idea of Ragnar architecture - Unidirectional Dataflow:
+It helps us write applications that behave consistently, can be easily tested and scaled. Unlike to Redux, we're operating not objects but classes which provides us an ability to make the code typed and check it for errors during TypeScript compilation. The main idea of Ragnar architecture is Unidirectional Dataflow:
 
 ![Alt text](/readme/simple_arch.png?raw=true)
 
-1. The Store is only one. Store items are Rx.Observables.
+1. The only one Store for whole App. Store items are Rx.Observables.
 
 2. Action executes business logic and updates the Store by sending a payload to an Observable stream.
 
-3. Component executes Actions and listens for Store updates to render prover view. 
+3. Component executes Actions and re-render itself by subscribing to Store observable items.
 
 That's it! Nothing more!
 
@@ -26,7 +26,7 @@ npm start
 
 Store is a single immutable data structure.
 
-It is a place where we keep all our data. Data collections, state of components etc.
+Holds application stat: Data collections, state of components etc.
 
 Each value in the Store must be an Observable and read-only. Observable streams and can be defined ONLY during an application initialization.
 
