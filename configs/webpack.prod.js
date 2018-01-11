@@ -31,9 +31,6 @@ module.exports = webpackMerge(commonConfig, {
         minimize: false // workaround for ng2
       }
     }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: ['app', 'vendor', 'polyfills']
-    }),
     new SassLintPlugin({
       configFile: '.sasslintrc',
       failOnError: true,

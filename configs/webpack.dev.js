@@ -4,6 +4,7 @@ const commonConfig = require('./webpack.common.js');
 const HappyPack = require('happypack');
 const helpers = require('./helpers');
 const Visualizer = require('webpack-visualizer-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = webpackMerge(commonConfig, {
   module: {
@@ -46,7 +47,8 @@ module.exports = webpackMerge(commonConfig, {
         }
       ]
     }),
-    new Visualizer({ filename: './statistics.html' })
+    new Visualizer({ filename: './statistics.html' }),
+    new BundleAnalyzerPlugin()
   ],
 
   devServer: {
