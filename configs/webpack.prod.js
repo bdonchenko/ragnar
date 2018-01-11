@@ -20,7 +20,9 @@ module.exports = webpackMerge(commonConfig, {
 
   plugins: [
     new webpack.NoEmitOnErrorsPlugin(),
-    new UglifyJsPlugin(),
+    new UglifyJsPlugin({
+      sourceMap: true
+    }),
     new webpack.DefinePlugin({
       'process.env': {
         ENV: JSON.stringify(ENV)
@@ -41,10 +43,12 @@ module.exports = webpackMerge(commonConfig, {
       { from: 'src/favicon.ico' }
     ])
   ],
+  stats: 'normal',
 
   devServer: {
     contentBase: './build/dist',
     historyApiFallback: true,
-    port: 3000
+    port: 3000,
+    stats: 'normal'
   }
 });
