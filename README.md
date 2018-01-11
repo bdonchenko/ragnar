@@ -1,6 +1,6 @@
 # Ragnar
 
-Ragnar is the Angular application architecture, inspired by FLUX and Redux. 
+Ragnar is an architecture for Angular applications, inspired by FLUX and Redux. 
 
 It helps us write applications that behave consistently, can be easily tested and scaled. Unlike to Redux, we're operating not objects but classes which provides us an ability to make the code typed and check it for errors during TypeScript compilation. The main idea of Ragnar architecture is Unidirectional Dataflow:
 
