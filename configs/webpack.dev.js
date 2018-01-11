@@ -48,7 +48,9 @@ module.exports = webpackMerge(commonConfig, {
       ]
     }),
     new Visualizer({ filename: './statistics.html' }),
-    new BundleAnalyzerPlugin()
+    new BundleAnalyzerPlugin({
+      openAnalyzer: false
+    })
   ],
 
   devServer: {
