@@ -69,7 +69,7 @@ Components are view layer of the application. They call execute method of Action
 
 They receive initial state during subscribing to Store items thanks to Rx.BehaviorSubject implementation.
 
-The powerful feature of Angular is "async" pipe. Now we do not need to subscribe/unsubscribe to Store items. Angular takes care of it!
+One of amazing features of Angular is "async" pipe. Now we do not need to subscribe/unsubscribe to Store items. Angular takes care of it!
 
 ``` html
 <h2>Home</h2>
