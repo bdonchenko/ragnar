@@ -1,35 +1,16 @@
 import { Component } from '@angular/core';
-import { HomeServerUpdatedAction } from 'app/actions/home/home-server-updated.action';
-import { HomeUpdatedAction } from 'app/actions/home/home-updated.action';
-import { Store } from 'app/store/store';
-import { Observable } from 'rxjs/Rx';
+import { ValuesService } from 'app/service/values.service';
 
 @Component({
   selector: 'home-component',
   templateUrl: 'home.component.html'
 })
 export class HomeComponent {
-  data$: Observable<number | null>;
-  serverData$: Observable<number>;
-  serverFilteredData$: Observable<number>;
+  constructor(private valuesService: ValuesService) {}
 
-  constructor(
-    store: Store,
-    private homeUpdatedAction: HomeUpdatedAction,
-    private homeServerUpdatedAction: HomeServerUpdatedAction
-  ) {
-    const home = store.homeStore;
-
-    this.data$ = home.counter$;
-    this.serverData$ = home.serverCounter$;
-    this.serverFilteredData$ = home.serverCounter$.filter(v => v % 3 === 0);
-  }
+  data = 1;
 
   update() {
-   this.homeUpdatedAction.execute();
-  }
-
-  serverUpdate() {
-    this.homeServerUpdatedAction.execute();
+    this.data = this.valuesService.getValue();
   }
 }
