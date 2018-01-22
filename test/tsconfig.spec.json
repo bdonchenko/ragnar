@@ -31,8 +31,7 @@
     "node_modules",
     "build/dist/*",
     "dist-serve/*",
-    "node/*",
-    "**/*.spec.ts"
+    "node/*"
   ],
   "awesomeTypescriptLoaderOptions": {
     "forkChecker": true,
