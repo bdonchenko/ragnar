@@ -25,6 +25,7 @@
     "containerless",
     "happypack",
     "pannable",
+    "polyfills",
     "sasslintrc",
     "simplebar"
   ]

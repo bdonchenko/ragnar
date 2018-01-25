@@ -11,31 +11,6 @@ console.log(`You are in ${npmScript} mode`);
 
 const env = process.env.NODE_ENV || 'local';
 
-const cssRules = [
-  {
-    loader: 'css-loader',
-    options: {
-      sourceMap: true
-    }
-  },
-  {
-    loader: 'postcss-loader',
-    options: {
-      sourceMap: 'inline',
-      config: {
-        path: './configs/postcss.config.js'
-      }
-    }
-  },
-  { loader: 'resolve-url-loader' },
-  {
-    loader: 'sass-loader',
-    options: {
-      sourceMap: true
-    }
-  }
-];
-
 module.exports = {
   entry: {
     polyfills: './src/polyfills.ts',
@@ -63,8 +38,33 @@ module.exports = {
       },
       {
         test: /\.(scss|sass|css)$/i,
-        issuer: [{ not: [{ test: /\.html$/i }] }],
-        use: ['css-to-string-loader', 'style-loader', ...cssRules]
+        // issuer: [{ not: [{ test: /\.html$/i }] }],
+        use: [
+          'css-to-string-loader',
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: true
+            }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              sourceMap: 'inline',
+              config: {
+                path: './configs/postcss.config.js'
+              }
+            }
+          },
+          { loader: 'resolve-url-loader' },
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true
+            }
+          }
+        ]
       },
       {
         test: /\.ts$/,
