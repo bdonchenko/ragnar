@@ -23,6 +23,7 @@
     "Inflights",
     "Resizer",
     "containerless",
+    "happypack",
     "pannable",
     "sasslintrc",
     "simplebar"
