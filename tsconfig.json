@@ -32,12 +32,10 @@
   ],
   "awesomeTypescriptLoaderOptions": {
     "forkChecker": true
-    //"useWebpackText": true,
-    //"useCache": true,
-    //"resolveGlobs": true
   },
   "angularCompilerOptions": {
     "genDir": ".",
-    "skipMetadataEmit": true
+    "skipMetadataEmit": true,
+    "fullTemplateTypeCheck": true
   }
 }

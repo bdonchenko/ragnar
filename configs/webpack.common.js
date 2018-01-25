@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const helpers = require('./helpers');
 const { TsConfigPathsPlugin } = require('awesome-typescript-loader');
+//const { AngularCompilerPlugin } = require('@ngtools/webpack');
 
 const npmScript = process.env.npm_lifecycle_event
   ? process.env.npm_lifecycle_event
@@ -53,22 +54,6 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.ts$/,
-        use: [
-          {
-            loader: 'awesome-typescript-loader',
-            options: { configFileName: helpers.root('tsconfig.json') }
-          },
-          {
-            loader: 'angular2-template-loader'
-          },
-          {
-            loader: 'angular-router-loader'
-          }
-        ],
-        exclude: [/\.(spec|e2e|d)\.ts$/]
-      },
-      {
         test: /\.html$/,
         loader: 'html-loader'
       },
@@ -80,6 +65,18 @@ module.exports = {
         test: /\.(scss|sass|css)$/i,
         issuer: [{ not: [{ test: /\.html$/i }] }],
         use: ['css-to-string-loader', 'style-loader', ...cssRules]
+      },
+      {
+        test: /\.ts$/,
+        use: [
+          {
+            loader: '@ngtools/webpack',
+            options: {
+              tsConfigPath: helpers.root('tsconfig.json')
+            }
+          }
+        ],
+        exclude: [/\.(spec|e2e|d)\.ts$/]
       }
     ]
   },
@@ -96,8 +93,13 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: 'src/index.html',
       chunksSortMode: 'manual',
-      chunks: ['polyfills', 'vendor', 'app'],
+      chunks: ['polyfills', 'vendor', 'app']
     }),
     new TsConfigPathsPlugin()
+    // new AngularCompilerPlugin({
+    //   tsConfigPath: helpers.root('tsconfig.json'),
+    //   entryModule: helpers.root('src/app/app.module#AppModule'),
+    //   sourceMap: true
+    // })
   ]
 };

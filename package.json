@@ -28,6 +28,8 @@
     "zone.js": "0.8.20"
   },
   "devDependencies": {
+    "@angular/compiler": "^5.2.1",
+    "@angular/compiler-cli": "^5.2.1",
     "@ngtools/webpack": "1.9.5",
     "@types/es6-shim": "0.31.35",
     "@types/jest": "22.1.0",
