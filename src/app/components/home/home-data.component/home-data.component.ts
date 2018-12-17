@@ -6,8 +6,8 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['home-data.component.scss']
 })
 export class HomeDataComponent {
-  @Input() data$: number;
-  @Input() title: string;
+  @Input() data$: number = 0;
+  @Input() title: string = '';
   @Output() onUpdated = new EventEmitter<boolean>();
 
   click() {

@@ -1,7 +1,7 @@
 <h2>Home</h2>
 
-<home-data-component title="Update" [data$]="data$" (onUpdated)="update($event)"></home-data-component>
-<home-data-component title="Server update" [data$]="serverData$" (onUpdated)="serverUpdate($event)"></home-data-component>
+<home-data-component title="Update" [data$]="data$" (onUpdated)="update()"></home-data-component>
+<home-data-component title="Server update" [data$]="serverData$" (onUpdated)="serverUpdate()"></home-data-component>
 <div>
   Filtered Data: {{serverFilteredData$ | async}}
 </div>

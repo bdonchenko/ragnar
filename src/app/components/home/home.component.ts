@@ -3,6 +3,7 @@ import { HomeServerUpdatedAction } from 'app/actions/home/home-server-updated.ac
 import { HomeUpdatedAction } from 'app/actions/home/home-updated.action';
 import { Store } from 'app/store/store';
 import { Observable } from 'rxjs';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'home-component',
@@ -22,7 +23,7 @@ export class HomeComponent {
 
     this.data$ = home.counter$;
     this.serverData$ = home.serverCounter$;
-    this.serverFilteredData$ = home.serverCounter$.filter(v => v % 3 === 0);
+    this.serverFilteredData$ = home.serverCounter$.pipe(filter(v => v % 3 === 0));
   }
 
   update() {

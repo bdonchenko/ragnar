@@ -8,6 +8,7 @@ import {
 import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Injectable()
 export class RequestLoggingInterceptor implements HttpInterceptor {
@@ -18,12 +19,12 @@ export class RequestLoggingInterceptor implements HttpInterceptor {
     // tslint:disable-next-line:no-any
   ): Observable<HttpEvent<any>> {
     const started = Date.now();
-    return next.handle(req).do(event => {
+    return next.handle(req).pipe(tap(event => {
       if (event instanceof HttpResponse) {
         const elapsed = Date.now() - started;
         // tslint:disable-next-line:no-console
         console.log(`Request for ${req.urlWithParams} took ${elapsed} ms.`);
       }
-    });
+    }));
   }
 }

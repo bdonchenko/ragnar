@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BaseRepository } from 'app/repositories/base-repository';
 import { Observable } from 'rxjs';
+import { of } from 'rxjs';
 
 @Injectable()
 export class ValuesRepository extends BaseRepository {
@@ -17,6 +18,6 @@ export class ValuesRepository extends BaseRepository {
     //   return d.toString().length + this.counter++;
     // });
 
-    return Observable.of(++this.counter);
+    return of(++this.counter);
   }
 }
