@@ -28,5 +28,9 @@
     "polyfills",
     "sasslintrc",
     "simplebar"
-  ]
+  ],
+  "editor.formatOnSave": false,
+  "[typescript]": {
+    "editor.formatOnSave": true
+  }
 }

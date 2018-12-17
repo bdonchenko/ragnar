@@ -23,11 +23,13 @@ export class HomeComponent {
 
     this.data$ = home.counter$;
     this.serverData$ = home.serverCounter$;
-    this.serverFilteredData$ = home.serverCounter$.pipe(filter(v => v % 3 === 0));
+    this.serverFilteredData$ = home.serverCounter$.pipe(
+      filter(v => v % 3 === 0)
+    );
   }
 
   update() {
-   this.homeUpdatedAction.execute();
+    this.homeUpdatedAction.execute();
   }
 
   serverUpdate() {

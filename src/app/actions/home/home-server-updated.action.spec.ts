@@ -5,12 +5,12 @@ import { HomeServerUpdatedAction } from './home-server-updated.action';
 
 describe('HomeServerUpdatedAction', () => {
   describe('execute', () => {
-    it('updates serverCounter$', () => {
+    test('updates serverCounter$', () => {
       const store = new Store();
       const valuesRepository = <ValuesRepository>{
         getData: () => of(1)
       };
-      
+
       const sut = new HomeServerUpdatedAction(store, valuesRepository);
 
       sut.execute();

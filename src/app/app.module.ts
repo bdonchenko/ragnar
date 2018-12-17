@@ -23,9 +23,11 @@ import { StoreModule } from 'app/store/store.module';
     RepositoriesModule
   ],
   bootstrap: [AppComponent],
-  providers: [{
-    provide: ErrorHandler,
-    useClass: GlobalErrorHandler
-  }]
+  providers: [
+    {
+      provide: ErrorHandler,
+      useClass: GlobalErrorHandler
+    }
+  ]
 })
 export class AppModule {}

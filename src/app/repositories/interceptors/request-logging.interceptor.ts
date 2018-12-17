@@ -19,12 +19,14 @@ export class RequestLoggingInterceptor implements HttpInterceptor {
     // tslint:disable-next-line:no-any
   ): Observable<HttpEvent<any>> {
     const started = Date.now();
-    return next.handle(req).pipe(tap(event => {
-      if (event instanceof HttpResponse) {
-        const elapsed = Date.now() - started;
-        // tslint:disable-next-line:no-console
-        console.log(`Request for ${req.urlWithParams} took ${elapsed} ms.`);
-      }
-    }));
+    return next.handle(req).pipe(
+      tap(event => {
+        if (event instanceof HttpResponse) {
+          const elapsed = Date.now() - started;
+          // tslint:disable-next-line:no-console
+          console.log(`Request for ${req.urlWithParams} took ${elapsed} ms.`);
+        }
+      })
+    );
   }
 }

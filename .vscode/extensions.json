@@ -9,7 +9,6 @@
     "glen-84.sass-lint",
     "mrmlnc.vscode-scss",
     "esbenp.prettier-vscode",
-    "eg2.tslint",
-    "vscode-jest"
+    "eg2.tslint"
   ]
 }

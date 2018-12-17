@@ -4,7 +4,7 @@ import { HomeDataComponent } from 'app/components/home/home-data.component/home-
 import { HomeComponent } from './home.component';
 
 @NgModule({
-  imports: [ CommonModule ],
+  imports: [CommonModule],
   exports: [HomeComponent],
   declarations: [HomeComponent, HomeDataComponent]
 })
