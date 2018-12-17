@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BaseRepository } from 'app/repositories/base-repository';
-import { Observable } from 'rxjs';
-import { of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 @Injectable()
 export class ValuesRepository extends BaseRepository {
@@ -13,11 +12,11 @@ export class ValuesRepository extends BaseRepository {
   }
 
   getData(): Observable<number> {
-    //Here will be call to the server
+    // Here will be call to the server
     // return this.get<string>('https://api.github.com').map(d => {
     //   return d.toString().length + this.counter++;
     // });
-
-    return of(++this.counter);
+    this.counter += 1;
+    return of(this.counter);
   }
 }

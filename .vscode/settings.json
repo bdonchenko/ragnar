@@ -32,5 +32,10 @@
   "editor.formatOnSave": false,
   "[typescript]": {
     "editor.formatOnSave": true
+  },
+  "tslint.autoFixOnSave": true,
+  "prettier.eslintIntegration": true,
+  "editor.codeActionsOnSave": {
+		"source.organizeImports": true
   }
 }

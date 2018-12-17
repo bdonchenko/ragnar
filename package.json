@@ -9,8 +9,9 @@
     "prestart": "npm prune && npm i",
     "start": "ng serve",
     "build": "ng build",
+    "lint": "ng lint",
     "buildServer": "ng serve --prod",
-    "test": "jest --watchAll --coverage=false",
+    "test": "ng test",
     "testbuild": "jest --coverage=true --ci"
   },
   "dependencies": {
@@ -56,7 +57,8 @@
     "sass-loader": "7.1.0",
     "sasslint-webpack-plugin": "1.0.4",
     "style-loader": "0.23.1",
-    "tslint": "5.11.0",
+    "tslint": "^5.11.0",
+    "tslint-config-airbnb": "^5.11.1",
     "tslint-loader": "3.5.4",
     "typescript": "^3.1.1",
     "uglifyjs-webpack-plugin": "2.0.1",

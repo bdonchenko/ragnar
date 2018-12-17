@@ -1,4 +1,7 @@
 {
+  "extends": [
+    "tslint-config-airbnb"
+  ],
   "rules": {
     "align": [false, "parameters", "arguments", "statements"],
     "ban": false,
@@ -52,7 +55,7 @@
       "check-open-brace",
       "check-whitespace"
     ],
-    "ordered-imports": true,
+    "ordered-imports": false,
     "quotemark": [true, "single", "jsx-double"],
     "radix": true,
     "semicolon": [true, "always", "ignore-bound-class-methods"],
@@ -86,6 +89,10 @@
       "check-separator",
       "check-type"
     ],
-    "jsx-wrap-multiline": false
+    "jsx-wrap-multiline": false,
+    "ter-arrow-parens": [true, "as-needed"],
+    "no-duplicate-imports": false,
+    "max-line-length": false,
+    "no-boolean-literal-compare": true
   }
 }
