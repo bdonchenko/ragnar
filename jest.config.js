@@ -24,6 +24,5 @@ module.exports = {
   ],
   coverageDirectory: './test/coverage',
   coverageReporters: ['cobertura'],
-  mapCoverage: true,
   testResultsProcessor: './test/jest-trx-processor'
 };

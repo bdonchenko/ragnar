@@ -19,7 +19,8 @@
     "skipLibCheck": true,
     "lib": ["es2017", "dom"],
     "outDir": "./build/dist/",
-    "typeRoots": ["node_modules/@types"]
+    "typeRoots": ["node_modules/@types"],
+    "types": ["jest"]
   },
   "compileOnSave": false,
   "buildOnSave": false,
