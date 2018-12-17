@@ -1,6 +1,6 @@
 import { ValuesRepository } from 'app/repositories/values.repository';
 import { Store } from 'app/store/store';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs';
 import { HomeServerUpdatedAction } from './home-server-updated.action';
 
 describe('HomeServerUpdatedAction', () => {

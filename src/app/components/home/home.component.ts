@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { HomeServerUpdatedAction } from 'app/actions/home/home-server-updated.action';
 import { HomeUpdatedAction } from 'app/actions/home/home-updated.action';
 import { Store } from 'app/store/store';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'home-component',
