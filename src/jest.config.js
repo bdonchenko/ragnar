@@ -12,9 +12,7 @@ module.exports = {
   //setupFiles: ['<rootDir>/test/jest-pretest.ts'],
   moduleNameMapper: {
     'app/(.*)': '<rootDir>/src/app/$1',
-    'assets/(.*)': '<rootDir>/src/assets/$1',
-    'environments/(.*)': '<rootDir>/src/environments/$1',
-    'environment(.*)': '<rootDir>/environments/tests.js'
+    'assets/(.*)': '<rootDir>/src/assets/$1'
   },
   collectCoverageFrom: [
     'src/**/*.{js,ts}',
