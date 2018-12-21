@@ -11,8 +11,8 @@
     "build": "ng build",
     "lint": "ng lint",
     "buildServer": "ng serve --prod",
-    "test": "ng test",
-    "testbuild": "jest --coverage=true --ci"
+    "test": "ng test --coverage=true",
+    "test-ci": "ng test --ci"
   },
   "dependencies": {
     "@angular/animations": "7.1.3",

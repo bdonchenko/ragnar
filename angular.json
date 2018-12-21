@@ -79,7 +79,7 @@
           "builder": "@angular-builders/jest:run",
           "options": {
             "styles": [
-              "src/styles.scss"
+              "src/sass/styles.scss"
             ],
             "scripts": [],
             "assets": [
