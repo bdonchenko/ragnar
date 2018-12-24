@@ -12,7 +12,7 @@
     "lint": "ng lint",
     "buildServer": "ng serve --prod",
     "test": "ng test --coverage=true",
-    "test-ci": "ng test --ci"
+    "test:ci": "ng test --ci"
   },
   "dependencies": {
     "@angular/animations": "7.1.3",
