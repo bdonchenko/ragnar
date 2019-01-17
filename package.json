@@ -11,7 +11,7 @@
     "build": "ng build --prod",
     "lint": "ng lint",
     "buildServer": "ng serve --prod",
-    "test": "ng test --coverage=true",
+    "test": "ng test",
     "test:ci": "ng test --ci",
     "check": "npm run build && npm run lint && npm t && npm start"
   },

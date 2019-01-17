@@ -2,11 +2,11 @@ module.exports = {
   preset: 'jest-preset-angular',
   globals: {
     'ts-jest': {
-      tsConfigFile: 'test/tsconfig.spec.json'
+      tsConfigFile: '<rootDir>/src/tsconfig.spec.json'
     },
     __TRANSFORM_HTML__: true
   },
-  setupTestFrameworkScriptFile: '<rootDir>/test/jest-init.ts',
+  setupTestFrameworkScriptFile: '<rootDir>/src/test/jest-init.ts',
   modulePaths: ['<rootDir>/src', '<rootDir>/node_modules'],
   roots: ['<rootDir>/src/'],
   //setupFiles: ['<rootDir>/test/jest-pretest.ts'],
@@ -15,12 +15,14 @@ module.exports = {
     'assets/(.*)': '<rootDir>/src/assets/$1'
   },
   collectCoverageFrom: [
-    'src/**/*.{js,ts}',
+    'src/app/**/*.ts',
     '!**/*.spec.{js,ts}',
     '!**/node_modules/**',
     '!**/*.d.ts',
+    '!**/*.module.ts',
   ],
-  coverageDirectory: './test/coverage',
-  coverageReporters: ['cobertura'],
-  testResultsProcessor: './test/jest-trx-processor'
+  collectCoverage: true,
+  coverageDirectory: './build/coverage',
+  coverageReporters: ['cobertura', 'text'],
+  testResultsProcessor: '<rootDir>/src/test/jest-trx-processor'
 };

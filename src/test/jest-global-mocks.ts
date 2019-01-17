@@ -1,9 +1,10 @@
 const mock = () => {
   let storage = {};
   return {
-    getItem: key => (key in storage ? storage[key] : null),
-    setItem: (key, value) => (storage[key] = value || ''),
-    removeItem: key => delete storage[key],
+    getItem: (key: string) => (key in storage ? storage[key] : null),
+    setItem: (key: string | number, value: string) =>
+      (storage[key] = value || ''),
+    removeItem: (key: string | number) => delete storage[key],
     clear: () => (storage = {})
   };
 };
