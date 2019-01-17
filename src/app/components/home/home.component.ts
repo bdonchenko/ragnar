@@ -1,7 +1,7 @@
+import { HomeServerUpdatedAction } from '@actions/home/home-server-updated.action';
+import { HomeUpdatedAction } from '@actions/home/home-updated.action';
 import { Component } from '@angular/core';
-import { HomeServerUpdatedAction } from 'app/actions/home/home-server-updated.action';
-import { HomeUpdatedAction } from 'app/actions/home/home-updated.action';
-import { HomeStore } from 'app/store/home-store';
+import { HomeStore } from '@stores/home.store';
 import { Observable } from 'rxjs';
 import { filter } from 'rxjs/operators';
 

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { HomeStore } from './home-store';
+import { HomeStore } from '@stores/home.store';
 
 @NgModule({
   providers: [HomeStore]

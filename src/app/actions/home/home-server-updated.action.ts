@@ -1,7 +1,7 @@
+import { IAction } from '@actions/i-action';
 import { Injectable } from '@angular/core';
-import { IAction } from 'app/actions/i-action';
-import { ValuesRepository } from 'app/repositories/values.repository';
-import { HomeStore } from 'app/store/home-store';
+import { ValuesRepository } from '@repositories/values.repository';
+import { HomeStore } from '@stores/home.store';
 
 @Injectable()
 export class HomeServerUpdatedAction implements IAction {

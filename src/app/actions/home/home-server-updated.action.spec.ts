@@ -1,5 +1,5 @@
-import { ValuesRepository } from 'app/repositories/values.repository';
-import { HomeStore } from 'app/store/home-store';
+import { ValuesRepository } from '@repositories/values.repository';
+import { HomeStore } from '@stores/home.store';
 import { of } from 'rxjs';
 import { HomeServerUpdatedAction } from './home-server-updated.action';
 

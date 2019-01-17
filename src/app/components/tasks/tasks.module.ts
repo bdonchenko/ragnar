@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { TasksComponent } from 'app/components/tasks/tasks.component';
+import { TasksComponent } from '@components/tasks/tasks.component';
 
 @NgModule({
   imports: [],

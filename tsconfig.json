@@ -16,6 +16,13 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "outDir": "./build/dist/",
+    "paths": {
+      "@actions/*": ["app/actions/*"],
+      "@components/*": ["app/components/*"],
+      "@repositories/*": ["app/repositories/*"],
+      "@services/*": ["app/services/*"],
+      "@stores/*": ["app/stores/*"]
+    },
     "removeComments": false,
     "skipLibCheck": true,
     "sourceMap": true,

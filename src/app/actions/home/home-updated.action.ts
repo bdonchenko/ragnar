@@ -1,7 +1,7 @@
+import { IAction } from '@actions/i-action';
 import { Injectable } from '@angular/core';
-import { IAction } from 'app/actions/i-action';
-import { NumberService } from 'app/services/number.service';
-import { HomeStore } from './../../store/home-store';
+import { NumberService } from '@services/number.service';
+import { HomeStore } from '@stores/home.store';
 
 @Injectable()
 export class HomeUpdatedAction implements IAction {
