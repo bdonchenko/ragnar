@@ -10,6 +10,7 @@
       "prefix": "app",
       "schematics": {
         "@schematics/angular:component": {
+          "changeDetection": "OnPush",
           "styleext": "scss"
         }
       },

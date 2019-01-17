@@ -1,42 +1,41 @@
 {
   "compilerOptions": {
-    "strict": true,
-    "target": "es5",
-    "declaration": false,
-    "moduleResolution": "node",
-    "sourceRoot": "./src",
     "baseUrl": "./src",
-    "sourceMap": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "removeComments": false,
-    "noImplicitAny": true,
-    "suppressImplicitAnyIndexErrors": true,
     "forceConsistentCasingInFileNames": true,
-    "noUnusedLocals": true,
+    "lib": [
+        "dom",
+        "es2017"
+    ],
+    "moduleResolution": "node",
+    "noEmitOnError": true,
+    "noErrorTruncation": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
-    "skipLibCheck": true,
-    "lib": ["es2017", "dom"],
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "outDir": "./build/dist/",
-    "typeRoots": ["node_modules/@types"],
-    "types": ["jest"]
-  },
+    "removeComments": false,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "sourceRoot": "./src",
+    "strict": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "target": "es5",
+    "typeRoots": [
+        "node_modules/@types"
+    ]
+},
   "compileOnSave": false,
   "buildOnSave": false,
   "include": ["./src/**/*"],
   "exclude": [
     "node_modules",
-    "build/dist/*",
-    "dist-serve/*",
-    "node/*"
+    "build/dist/*"
   ],
-  "awesomeTypescriptLoaderOptions": {
-    "forkChecker": true
-  },
   "angularCompilerOptions": {
-    "genDir": ".",
-    "skipMetadataEmit": true,
+    "strictInjectionParameters": true,
     "fullTemplateTypeCheck": true
   }
 }
