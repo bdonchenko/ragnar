@@ -1,12 +1,12 @@
 import { ValuesRepository } from 'app/repositories/values.repository';
-import { Store } from 'app/store/store';
+import { HomeStore } from 'app/store/home-store';
 import { of } from 'rxjs';
 import { HomeServerUpdatedAction } from './home-server-updated.action';
 
 describe('HomeServerUpdatedAction', () => {
   describe('execute', () => {
     test('updates serverCounter$', () => {
-      const store = new Store();
+      const store = new HomeStore();
       const valuesRepository = <ValuesRepository>{
         getData: () => of(1)
       };
@@ -15,7 +15,7 @@ describe('HomeServerUpdatedAction', () => {
 
       sut.execute();
 
-      expect(store.homeStore.serverCounter$.getValue()).toBe(1);
+      expect(store.serverCounter$.getValue()).toBe(1);
     });
   });
 });

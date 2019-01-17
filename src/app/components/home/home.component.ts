@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { HomeServerUpdatedAction } from 'app/actions/home/home-server-updated.action';
 import { HomeUpdatedAction } from 'app/actions/home/home-updated.action';
-import { Store } from 'app/store/store';
+import { HomeStore } from 'app/store/home-store';
 import { Observable } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
@@ -15,15 +15,14 @@ export class HomeComponent {
   serverFilteredData$: Observable<number>;
 
   constructor(
-    store: Store,
+    store: HomeStore,
     private homeUpdatedAction: HomeUpdatedAction,
     private homeServerUpdatedAction: HomeServerUpdatedAction
   ) {
-    const home = store.homeStore;
 
-    this.data$ = home.counter$;
-    this.serverData$ = home.serverCounter$;
-    this.serverFilteredData$ = home.serverCounter$.pipe(
+    this.data$ = store.counter$;
+    this.serverData$ = store.serverCounter$;
+    this.serverFilteredData$ = store.serverCounter$.pipe(
       filter(v => v % 3 === 0)
     );
   }

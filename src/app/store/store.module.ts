@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
-import { Store } from 'app/store/store';
+import { HomeStore } from './home-store';
 
 @NgModule({
-  providers: [Store]
+  providers: [HomeStore]
 })
 export class StoreModule {}
