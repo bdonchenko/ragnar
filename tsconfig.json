@@ -4,10 +4,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
-    "lib": [
-        "dom",
-        "es2017"
-    ],
+    "lib": ["dom", "es2017"],
     "moduleResolution": "node",
     "noEmitOnError": true,
     "noErrorTruncation": true,
@@ -30,17 +27,12 @@
     "strict": true,
     "suppressImplicitAnyIndexErrors": true,
     "target": "es5",
-    "typeRoots": [
-        "node_modules/@types"
-    ]
-},
+    "typeRoots": ["node_modules/@types"]
+  },
   "compileOnSave": false,
   "buildOnSave": false,
   "include": ["./src/**/*"],
-  "exclude": [
-    "node_modules",
-    "build/*"
-  ],
+  "exclude": ["node_modules", "build/*"],
   "angularCompilerOptions": {
     "strictInjectionParameters": true,
     "fullTemplateTypeCheck": true
