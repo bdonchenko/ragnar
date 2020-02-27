@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BaseRepository } from '@repositories/base-repository';
 import { Observable, of } from 'rxjs';
+import { BaseRepository } from './base-repository';
 
 @Injectable()
 export class ValuesRepository extends BaseRepository {
-  private counter: number = 0;
+  private counter = 0;
 
   constructor(httpClient: HttpClient) {
     super(httpClient);

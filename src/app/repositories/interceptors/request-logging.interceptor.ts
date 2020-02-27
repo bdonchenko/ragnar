@@ -6,17 +6,15 @@ import { tap } from 'rxjs/operators';
 @Injectable()
 export class RequestLoggingInterceptor implements HttpInterceptor {
   intercept(
-    // tslint:disable-next-line:no-any
-    req: HttpRequest<any>,
+    req: HttpRequest<object>,
     next: HttpHandler
-    // tslint:disable-next-line:no-any
-  ): Observable<HttpEvent<any>> {
+  ): Observable<HttpEvent<object>> {
     const started = Date.now();
     return next.handle(req).pipe(
       tap(event => {
         if (event instanceof HttpResponse) {
           const elapsed = Date.now() - started;
-          // tslint:disable-next-line:no-console
+          // eslint-disable-next-line no-console
           console.log(`Request for ${req.urlWithParams} took ${elapsed} ms.`);
         }
       })

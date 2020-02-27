@@ -1,41 +1,20 @@
 {
-  // Place your settings in this file to overwrite default and user settings.
   "search.exclude": {
-    "**/node_modules": true,
-    "**/bower_components": true,
-    "**/test/coverage-jest": true,
+    "**/coverage": true,
     "**/dist": true,
-    "scripts": true,
-    "coverage": true,
-    "dist": true,
-    "**/*.trx": true
+    "**/examples": true,
+    "**/node_modules": true
   },
+  "editor.formatOnSave": true,
   "editor.tabSize": 2,
-  "tslint.enable": true,
-  "prettier.singleQuote": true,
-  "typescript.tsdk": "node_modules/typescript/lib",
-  "eslint.enable": false,
-  "sasslint.configFile": ".sasslintrc",
-  "cSpell.words": [
-    "Arrangeable",
-    "Dropdown",
-    "Dropdowns",
-    "Inflights",
-    "Resizer",
-    "containerless",
-    "happypack",
-    "pannable",
-    "polyfills",
-    "sasslintrc",
-    "simplebar"
+  // Show eslint warnings and errors in typescript files
+  "eslint.validate": [
+    "javascript",
+    "typescript",
   ],
-  "editor.formatOnSave": false,
-  "[typescript]": {
-    "editor.formatOnSave": true
-  },
-  "tslint.autoFixOnSave": true,
+  // Run `eslint --fix` after Prettier, follows `npm run format` flow
   "prettier.eslintIntegration": true,
   "editor.codeActionsOnSave": {
-		"source.organizeImports": true
+    "source.fixAll.eslint": true
   }
 }

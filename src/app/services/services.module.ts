@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { NumberService } from '@services/number.service';
+import { NumberService } from './number.service';
 
 @NgModule({
   providers: [NumberService]

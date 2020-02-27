@@ -1,0 +1,9 @@
+<h2>Home</h2>
+
+<data-component title="Update" [data]="data$ | async" (onUpdated)="update()">
+</data-component>
+<data-component title="Server update" [data]="serverData$ | async" (onUpdated)="serverUpdate()">
+</data-component>
+<div>
+  Filtered Data: {{serverFilteredData$ | async}}
+</div>
