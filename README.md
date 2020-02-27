@@ -61,7 +61,7 @@ export class HomeUpdatedCommand implements ICommand {
 
 ### 3. Component
 
-Components are view layer of the application. They call execute method of Actions in response to User activity and re-render themselves by subscribing to Store items.
+Components are view layer of the application. They call execute method of Command in response to User activity and re-render themselves by subscribing to Store items.
 
 They receive initial state during subscribing to Store items thanks to Rx.BehaviorSubject implementation.
 
@@ -94,8 +94,8 @@ export class HomePageComponent {
 
   constructor(
     store: HomeStore,
-    private homeUpdatedAction: UpdatedCommand,
-    private homeServerUpdatedAction: ServerUpdatedCommand
+    private homeUpdatedCommand: UpdatedCommand,
+    private homeServerUpdatedCommand: ServerUpdatedCommand
   ) {
 
     this.data$ = store.counter$;
@@ -106,11 +106,11 @@ export class HomePageComponent {
   }
 
   update() {
-    this.homeUpdatedAction.execute();
+    this.homeUpdatedCommand.execute();
   }
 
   serverUpdate() {
-    this.homeServerUpdatedAction.execute();
+    this.homeServerUpdatedCommand.execute();
   }
 }
 ```

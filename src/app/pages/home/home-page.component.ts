@@ -18,8 +18,8 @@ export class HomePageComponent {
 
   constructor(
     store: HomeStore,
-    private homeUpdatedAction: UpdatedCommand,
-    private homeServerUpdatedAction: ServerUpdatedCommand
+    private homeUpdatedCommand: UpdatedCommand,
+    private homeServerUpdatedCommand: ServerUpdatedCommand
   ) {
 
     this.data$ = store.counter$;
@@ -30,10 +30,10 @@ export class HomePageComponent {
   }
 
   update() {
-    this.homeUpdatedAction.execute();
+    this.homeUpdatedCommand.execute();
   }
 
   serverUpdate() {
-    this.homeServerUpdatedAction.execute();
+    this.homeServerUpdatedCommand.execute();
   }
 }
