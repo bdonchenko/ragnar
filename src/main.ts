@@ -8,6 +8,7 @@ if (environment.production) {
   enableProdMode();
 }
 
-platformBrowserDynamic().bootstrapModule(AppModule)
+platformBrowserDynamic()
+  .bootstrapModule(AppModule)
   // eslint-disable-next-line no-console
-  .catch((error) => console.error(error));
+  .catch(error => console.error(error));

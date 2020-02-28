@@ -10,8 +10,8 @@ import { ValuesRepository } from './values.repository';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: RequestLoggingInterceptor,
-      multi: true
-    }
-  ]
+      multi: true,
+    },
+  ],
 })
 export class RepositoriesModule {}

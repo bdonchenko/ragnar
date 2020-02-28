@@ -1,4 +1,10 @@
-import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from '@angular/common/http';
+import {
+  HttpEvent,
+  HttpHandler,
+  HttpInterceptor,
+  HttpRequest,
+  HttpResponse,
+} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
@@ -7,7 +13,7 @@ import { tap } from 'rxjs/operators';
 export class RequestLoggingInterceptor implements HttpInterceptor {
   intercept(
     req: HttpRequest<object>,
-    next: HttpHandler
+    next: HttpHandler,
   ): Observable<HttpEvent<object>> {
     const started = Date.now();
     return next.handle(req).pipe(
@@ -17,7 +23,7 @@ export class RequestLoggingInterceptor implements HttpInterceptor {
           // eslint-disable-next-line no-console
           console.log(`Request for ${req.urlWithParams} took ${elapsed} ms.`);
         }
-      })
+      }),
     );
   }
 }

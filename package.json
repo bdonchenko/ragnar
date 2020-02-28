@@ -9,7 +9,8 @@
     "test:watch": "jest --watch",
     "test:ci": "jest --runInBand",
     "lint": "eslint . --ext .ts --fix",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "format": "prettier-eslint --write $PWD/'src/**/*.{[jt]s, html}' && eslint . --ext .ts --fix"
   },
   "private": true,
   "dependencies": {
@@ -45,13 +46,22 @@
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-unicorn": "^16.1.1",
+    "husky": "^4.2.3",
     "jest": "^25.1.0",
     "jest-preset-angular": "^8.0.0",
     "jest-trx-results-processor": "^2.0.0",
     "prettier": "^1.19.1",
+    "prettier-eslint": "^9.0.1",
+    "prettier-eslint-cli": "^5.0.0",
+    "pretty-quick": "^2.0.1",
     "protractor": "~5.4.3",
     "ts-node": "~8.6.2",
     "tslint": "~6.0.0",
     "typescript": "3.7.5"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick"
+    }
   }
 }

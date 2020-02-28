@@ -1,20 +1,14 @@
 {
   "search.exclude": {
-    "**/coverage": true,
     "**/dist": true,
-    "**/examples": true,
     "**/node_modules": true
   },
   "editor.formatOnSave": true,
   "editor.tabSize": 2,
   // Show eslint warnings and errors in typescript files
-  "eslint.validate": [
-    "javascript",
-    "typescript",
-  ],
-  // Run `eslint --fix` after Prettier, follows `npm run format` flow
-  "prettier.eslintIntegration": true,
+  "eslint.validate": ["javascript", "typescript"],
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
-  }
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
 }

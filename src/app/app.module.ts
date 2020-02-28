@@ -11,24 +11,22 @@ import { GlobalErrorHandler } from './infrastructure/global-error-handler';
 import { AppStore } from './app.store';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     RepositoriesModule,
     ServicesModule,
     HomePageModule,
-    TasksPageModule
+    TasksPageModule,
   ],
   providers: [
     {
       provide: ErrorHandler,
-      useClass: GlobalErrorHandler
+      useClass: GlobalErrorHandler,
     },
-    AppStore
+    AppStore,
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

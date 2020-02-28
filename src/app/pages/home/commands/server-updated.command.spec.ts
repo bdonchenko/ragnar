@@ -8,7 +8,7 @@ describe('ServerUpdatedCommand', () => {
     test('updates serverCounter$', () => {
       const store = new HomeStore();
       const valuesRepository = {
-        getData: () => of(1)
+        getData: () => of(1),
       } as ValuesRepository;
 
       const sut = new ServerUpdatedCommand(store, valuesRepository);
