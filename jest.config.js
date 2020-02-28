@@ -10,7 +10,7 @@ module.exports = {
     '!**/*.d.ts',
     '!**/*.module.ts',
     '!**/*.store.ts',
-    '!src/repositories'
+    '!src/app/repositories/**',
   ],
   resolver: "jest-resolver-tsconfig-paths",
   collectCoverage: true,
@@ -28,10 +28,10 @@ module.exports = {
   ],
   "coverageThreshold": {
     "global": {
-      "branches": 80,
-      "functions": 80,
-      "lines": 80,
-      "statements": 80
+      "branches": 90,
+      "functions": 90,
+      "lines": 90,
+      "statements": 90
     },
     "./src/app/services/": {
       "branches": 100,
@@ -48,7 +48,7 @@ module.exports = {
     "./src/app/pages/**/*.component.ts": {
       "branches": 100,
       "functions": 100,
-      "lines": 50,
+      "lines": 100,
       "statements": 100
     }
   }

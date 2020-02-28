@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AppComponent Snapshot check snapshot 1`] = `
+<app-root
+  title={[Function String]}
+>
+  <div>
+    <h1>
+      Welcome to 
+    </h1>
+  </div><nav
+    class="nav"
+  >
+    <a
+      class="nav__link a-component"
+      routerlink="/home"
+      routerlinkactive="active"
+    >
+      Home
+    </a>
+    <a
+      class="nav__link"
+      routerlink="/tasks"
+      routerlinkactive="active"
+    >
+      Tasks
+    </a>
+  </nav><router-outlet />
+</app-root>
+`;

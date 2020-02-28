@@ -13,6 +13,7 @@
     "noImplicitReturns": false,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
+    "emitDecoratorMetadata": true
   },
   "files": [
     "src/polyfills.ts"

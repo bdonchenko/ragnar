@@ -1,5 +1,5 @@
 import { UpdatedCommand } from './updated.command';
-import { NumberService } from "../../../services/number.service";
+import { NumberService } from '../../../services/number.service';
 import { HomeStore } from '../home.store';
 
 describe('UpdatedCommand', () => {
@@ -7,7 +7,7 @@ describe('UpdatedCommand', () => {
     test('updates counter$', () => {
       const store = new HomeStore();
       const numberService = {
-        getRandomValue: jest.fn(() => 1)
+        getRandomValue: jest.fn(() => 1),
       } as NumberService;
 
       const sut = new UpdatedCommand(store, numberService);

@@ -3,22 +3,25 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [RouterTestingModule],
-      declarations: [AppComponent],
-    }).compileComponents();
-  }));
+  describe('Snapshot', () => {
+    beforeEach(async(() => {
+      TestBed.configureTestingModule({
+        imports: [RouterTestingModule],
+        declarations: [AppComponent],
+      }).compileComponents();
+    }));
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
+    test('check snapshot', () => {
+      const sut = TestBed.createComponent(AppComponent);
+
+      expect(sut).toMatchSnapshot();
+    });
   });
 
-  it("should have as title 'Ragnar'", () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('Ragnar');
+  describe('Functionality', () => {
+    test('constructor', () => {
+      const sut = new AppComponent();
+      expect(sut.title).toEqual('Ragnar');
+    });
   });
 });

@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HomePageComponent Snapshot check snapshot 1`] = `
+<home-page
+  data$={[Function BehaviorSubject]}
+  homeServerUpdatedCommand={[Function ServerUpdatedCommand]}
+  homeUpdatedCommand={[Function UpdatedCommand]}
+  serverData$={[Function BehaviorSubject]}
+  serverFilteredData$={[Function AnonymousSubject]}
+>
+  <h2>
+    Home
+  </h2><data-component
+    title="Update"
+  >
+    <div
+      class="home-data"
+    >
+      <button>
+        
+      </button>
+      <h4>
+        Data: 
+      </h4>
+    </div>
+  </data-component><data-component
+    title="Server update"
+  >
+    <div
+      class="home-data"
+    >
+      <button>
+        
+      </button>
+      <h4>
+        Data: 
+      </h4>
+    </div>
+  </data-component><div>
+     Filtered Data: 
+  </div>
+</home-page>
+`;

@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TasksPageComponent Snapshot check snapshot 1`] = `
+<tasks-page>
+  <h2>
+    Tasks component
+  </h2><div
+    class="tasks-component"
+  >
+     Nothing to show. Just an example of routing.
+  
+  </div>
+</tasks-page>
+`;
