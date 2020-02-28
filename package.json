@@ -49,6 +49,7 @@
     "husky": "^4.2.3",
     "jest": "^25.1.0",
     "jest-preset-angular": "^8.0.0",
+    "jest-resolver-tsconfig-paths": "^0.10.0",
     "jest-trx-results-processor": "^2.0.0",
     "prettier": "^1.19.1",
     "prettier-eslint": "^9.0.1",
