@@ -1,5 +1,5 @@
-const express = require('express');
-const { createProxyMiddleware } = require('http-proxy-middleware');
+import express, { static } from 'express';
+import { createProxyMiddleware } from 'http-proxy-middleware';
 
 const app = express();
 
@@ -8,5 +8,5 @@ app.use('/api/', createProxyMiddleware({
   changeOrigin: true,
   secure: false
 }));
-app.use(express.static('./dist/ragnar'));
+app.use(static('./dist/ragnar'));
 app.listen(80);

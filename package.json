@@ -25,7 +25,9 @@
     "@angular/router": "~9.0.4",
     "rxjs": "~6.5.4",
     "tslib": "^1.11.1",
-    "zone.js": "~0.10.2"
+    "zone.js": "~0.10.2",
+    "express": "^4.17.1",
+    "http-proxy-middleware": "^1.0.1"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.900.4",
@@ -47,8 +49,6 @@
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-unicorn": "^16.1.1",
-    "express": "^4.17.1",
-    "http-proxy-middleware": "^1.0.1",
     "husky": "^4.2.3",
     "jest": "^25.1.0",
     "jest-preset-angular": "^8.0.0",
