@@ -67,7 +67,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ragnar:build"
+            "browserTarget": "ragnar:build",
+            "proxyConfig": "proxy.conf.json"
           },
           "configurations": {
             "production": {
