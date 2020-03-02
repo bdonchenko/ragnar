@@ -7,16 +7,25 @@ import {
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { tap } from 'rxjs/operators';
 
 @Injectable()
-export class RequestLoggingInterceptor implements HttpInterceptor {
+export class ApiInterceptor implements HttpInterceptor {
   intercept(
     req: HttpRequest<object>,
     next: HttpHandler,
   ): Observable<HttpEvent<object>> {
+    const headers = req.headers
+      .append('Content-Type', 'application/json')
+      .append('Accept', 'application/json')
+      .append('Access-Control-Allow-Methods', '*')
+      .append('Access-Control-Allow-Origin', '*');
+
+    const newReq = req.clone({ headers, url: environment.baseURL + req.url })
+
     const started = Date.now();
-    return next.handle(req).pipe(
+    return next.handle(newReq).pipe(
       tap(event => {
         if (event instanceof HttpResponse) {
           const elapsed = Date.now() - started;

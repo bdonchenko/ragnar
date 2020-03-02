@@ -1,7 +1,7 @@
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { RequestLoggingInterceptor } from './interceptors/request-logging.interceptor';
 import { ValuesRepository } from './values.repository';
+import { ApiInterceptor } from './interceptors/api.interceptor';
 
 @NgModule({
   imports: [HttpClientModule],
@@ -9,9 +9,9 @@ import { ValuesRepository } from './values.repository';
     ValuesRepository,
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: RequestLoggingInterceptor,
+      useClass: ApiInterceptor,
       multi: true,
     },
   ],
 })
-export class RepositoriesModule {}
+export class RepositoriesModule { }
