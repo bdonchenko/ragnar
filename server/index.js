@@ -4,7 +4,7 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
 const app = express();
 
 app.use('/api/', createProxyMiddleware({
-  target: 'https://localhost:5001',
+  target: 'http://localhost:5001',
   changeOrigin: true,
   secure: false
 }));
