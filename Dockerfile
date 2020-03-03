@@ -1,34 +1,26 @@
 # Stage 1 - builder image
-FROM node:12.16.1-stretch as builder
+FROM mhart/alpine-node:12 as build-stage
 
-# Create stellar app directory
-ENV APP_PATH /usr/src/app
-WORKDIR $APP_PATH
+# build-time variables
+# prod|sandbox its value will be come from outside
+ARG env=prod
+
+# Move our files into directory name "app"
+WORKDIR /app
 
 #Copy source
-COPY --chown=node:node . .
-
-USER node
-
+COPY package.json yarn.lock  /app/
 RUN yarn install
+
+COPY .  /app
 RUN yarn build
 
-# Go to the server directory
-WORKDIR $APP_PATH/server
-RUN yarn install
+# Stage 1, based on Nginx, to have only the compiled app, ready for production with Nginx
+FROM nginx:alpine
+COPY --from=build-stage /app/dist /usr/share/nginx/html
+# Copy the default nginx.conf provided by tiangolo/node-frontend
+RUN rm /etc/nginx/conf.d/default.conf
+COPY --from=build-stage /app/nginx.conf /etc/nginx/nginx.conf
 
-
-# Stage 2 - publish image
-FROM node:12.16.1-stretch
-
-ENV APP_PATH /usr/src/app
-
-USER node
-COPY --from=builder --chown=node:node $APP_PATH/dist             $APP_PATH/dist
-COPY --from=builder --chown=node:node $APP_PATH/server           $APP_PATH/server
-
-WORKDIR $APP_PATH/server
-ENV NODE_ENV=production
-
-EXPOSE 8080
-CMD [ "node", "index.js" ]
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
