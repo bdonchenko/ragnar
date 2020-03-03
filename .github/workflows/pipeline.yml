@@ -1,0 +1,23 @@
+name: Push_Master_Pipeline
+
+env:
+  APPLICATION_NAME: 'Ragnar'
+  PACKAGE_NAME: 'ragnar-deploy-ver-$({ github.sha })'
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: test
+        continue-on-error: false
+        run: echo "Hi Ragnar"
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
