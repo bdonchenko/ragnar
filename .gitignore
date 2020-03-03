@@ -50,3 +50,4 @@ Thumbs.db
 /dist
 /node_modules
 Close
+/server/node_modules
