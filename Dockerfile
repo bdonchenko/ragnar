@@ -24,3 +24,7 @@ COPY --from=build-stage /app/nginx.conf /etc/nginx/nginx.conf
 
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
+
+
+# docker build -t ragnar:v1 .
+# docker run --rm -it -p 80:80/tcp ragnar:latest
