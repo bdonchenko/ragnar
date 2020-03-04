@@ -77,8 +77,8 @@ jobs:
       - uses: Azure/aks-set-context@v1
         with:
           creds: '${{ secrets.AZURE_CREDENTIALS }}'
-          cluster-name: ${{ env.APPLICATION_NAME }}
-          resource-group: ${{ env.APPLICATION_NAME }}
+          cluster-name: ragnar
+          resource-group: ragnar
 
       - uses: Azure/k8s-create-secret@v1
         with:
