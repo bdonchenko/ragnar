@@ -2,7 +2,7 @@ name: Push_Master_Pipeline
 
 env:
   APPLICATION_NAME: 'ragnar'
-  DEPLOY_PACKAGE_NAME: 'ragnar-deploy-ver-$({ github.sha })'
+  DEPLOY_PACKAGE_NAME: 'korona.azurecr.io/ragnar:${{ github.sha }}'
 
 on:
   push:
@@ -16,6 +16,9 @@ jobs:
   build:
     # using ubuntu
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
 
     steps:
       - name: checkout
@@ -53,3 +56,19 @@ jobs:
         with:
           cmd: build # will run `yarn build` command
 
+      - name: 'azure login'
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: 'docker login'
+      - uses: azure/docker-login@v1
+        with:
+          login-server: korona.azurecr.io
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+
+      - name: 'docker build and push'
+        run: |
+          docker build . -t {{ env.DEPLOY_PACKAGE_NAME }}
+          docker push {{ env.DEPLOY_PACKAGE_NAME }}
