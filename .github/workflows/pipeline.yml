@@ -62,7 +62,7 @@ jobs:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: 'docker login'
-      - uses: azure/docker-login@v1
+        uses: azure/docker-login@v1
         with:
           login-server: korona.azurecr.io
           username: ${{ secrets.REGISTRY_USERNAME }}
