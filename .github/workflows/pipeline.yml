@@ -93,7 +93,7 @@ jobs:
             manifests/deployment.yml
             manifests/service.yml
           images: |
-            korona.azurecr.io/ragnar:${{ github.sha }}
+            ${{ env.DEPLOY_PACKAGE_NAME }}
           imagepullsecrets: |
             demo-k8s-secret
 
