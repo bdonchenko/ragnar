@@ -21,7 +21,7 @@ jobs:
         node-version: [12.x]
 
     steps:
-      - name: checkout
+      - name: Git Checkout
         uses: actions/checkout@v1
 
       - name: Get yarn cache directory path
@@ -36,39 +36,43 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
 
-      - name: install
+      - name: Install dependencies
         uses: borales/actions-yarn@v2.0.0
         with:
           cmd: install # will run `yarn install` command
 
-      - name: lint
+      - name: Linter
         uses: borales/actions-yarn@v2.0.0
         with:
           cmd: lint # will run `yarn lint` command
 
-      - name: test
+      - name: Tests
         uses: borales/actions-yarn@v2.0.0
         with:
           cmd: test:ci # will run `yarn test:ci` command
 
-      - name: build
+      - name: Build
         uses: borales/actions-yarn@v2.0.0
         with:
           cmd: build # will run `yarn build` command
 
-      - name: 'azure login'
+      - name: 'Azure login'
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      - name: 'docker login'
+      - name: 'Docker login'
         uses: azure/docker-login@v1
         with:
           login-server: korona.azurecr.io
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
 
-      - name: 'docker build and push'
+      - name: 'Docker build and push'
         run: |
-          docker build . -t {{ env.DEPLOY_PACKAGE_NAME }}
-          docker push {{ env.DEPLOY_PACKAGE_NAME }}
+          docker build . -t ${{ env.DEPLOY_PACKAGE_NAME }}
+          docker push ${{ env.DEPLOY_PACKAGE_NAME }}
+
+      - name: 'Azure logout'
+        run: |
+          az logout
