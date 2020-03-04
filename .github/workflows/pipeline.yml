@@ -73,12 +73,16 @@ jobs:
           docker build . -t ${{ env.DEPLOY_PACKAGE_NAME }}
           docker push ${{ env.DEPLOY_PACKAGE_NAME }}
 
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
       # Set the target AKS cluster.
       - uses: Azure/aks-set-context@v1
         with:
           creds: '${{ secrets.AZURE_CREDENTIALS }}'
-          cluster-name: ragnar
-          resource-group: ragnar
+          cluster-name: ${{ env.APPLICATION_NAME }}
+          resource-group: ${{ env.APPLICATION_NAME }}
 
       - uses: Azure/k8s-create-secret@v1
         with:
