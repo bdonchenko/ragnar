@@ -49,7 +49,7 @@ jobs:
       - name: test
         uses: borales/actions-yarn@v2.0.0
         with:
-          cmd: test:ci # will run `yarn test` command
+          cmd: test:ci # will run `yarn test:ci` command
 
       - name: build
         uses: borales/actions-yarn@v2.0.0
