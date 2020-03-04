@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
         - name: ui-container
-          image: ragnar:v1
+          image: korona.azurecr.io/ragnar:v1
           resources:
             limits:
               memory: '128Mi'
