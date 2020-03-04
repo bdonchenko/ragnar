@@ -73,6 +73,30 @@ jobs:
           docker build . -t ${{ env.DEPLOY_PACKAGE_NAME }}
           docker push ${{ env.DEPLOY_PACKAGE_NAME }}
 
+      # Set the target AKS cluster.
+      - uses: Azure/aks-set-context@v1
+        with:
+          creds: '${{ secrets.AZURE_CREDENTIALS }}'
+          cluster-name: ragnar
+          resource-group: ragnar
+
+      - uses: Azure/k8s-create-secret@v1
+        with:
+          container-registry-url: korona.azurecr.io
+          container-registry-username: ${{ secrets.REGISTRY_USERNAME }}
+          container-registry-password: ${{ secrets.REGISTRY_PASSWORD }}
+          secret-name: demo-k8s-secret
+
+      - uses: Azure/k8s-deploy@v1
+        with:
+          manifests: |
+            manifests/deployment.yml
+            manifests/service.yml
+          images: |
+            korona.azurecr.io/ragnar:${{ github.sha }}
+          imagepullsecrets: |
+            demo-k8s-secret
+
       - name: 'Azure logout'
         run: |
           az logout
