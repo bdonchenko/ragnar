@@ -73,16 +73,6 @@ jobs:
           docker build . -t ${{ env.DEPLOY_PACKAGE_NAME }}
           docker push ${{ env.DEPLOY_PACKAGE_NAME }}
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: 'Azure login'
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-
       # Set the target AKS cluster.
       - uses: Azure/aks-set-context@v1
         with:
