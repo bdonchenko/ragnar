@@ -3,7 +3,7 @@
 exports[`DataComponent Snapshot check snapshot 1`] = `
 <data-component
   data="0"
-  onUpdated={[Function EventEmitter]}
+  onUpdated={[Function EventEmitter_]}
   title=""
 >
   <div
