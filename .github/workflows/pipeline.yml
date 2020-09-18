@@ -56,47 +56,47 @@ jobs:
         with:
           cmd: build # will run `yarn build` command
 
-      - name: 'Azure login'
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      # - name: 'Azure login'
+      #   uses: azure/login@v1
+      #   with:
+      #     creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      - name: 'Docker login'
-        uses: azure/docker-login@v1
-        with:
-          login-server: korona.azurecr.io
-          username: ${{ secrets.REGISTRY_USERNAME }}
-          password: ${{ secrets.REGISTRY_PASSWORD }}
+      # - name: 'Docker login'
+      #   uses: azure/docker-login@v1
+      #   with:
+      #     login-server: korona.azurecr.io
+      #     username: ${{ secrets.REGISTRY_USERNAME }}
+      #     password: ${{ secrets.REGISTRY_PASSWORD }}
 
-      - name: 'Docker build and push'
-        run: |
-          docker build . -t ${{ env.DEPLOY_PACKAGE_NAME }}
-          docker push ${{ env.DEPLOY_PACKAGE_NAME }}
+      # - name: 'Docker build and push'
+      #   run: |
+      #     docker build . -t ${{ env.DEPLOY_PACKAGE_NAME }}
+      #     docker push ${{ env.DEPLOY_PACKAGE_NAME }}
 
-      # Set the target AKS cluster.
-      - uses: Azure/aks-set-context@v1
-        with:
-          creds: '${{ secrets.AZURE_CREDENTIALS }}'
-          cluster-name: ragnar
-          resource-group: ragnar
+      # # Set the target AKS cluster.
+      # - uses: Azure/aks-set-context@v1
+      #   with:
+      #     creds: '${{ secrets.AZURE_CREDENTIALS }}'
+      #     cluster-name: ragnar
+      #     resource-group: ragnar
 
-      - uses: Azure/k8s-create-secret@v1
-        with:
-          container-registry-url: korona.azurecr.io
-          container-registry-username: ${{ secrets.REGISTRY_USERNAME }}
-          container-registry-password: ${{ secrets.REGISTRY_PASSWORD }}
-          secret-name: demo-k8s-secret
+      # - uses: Azure/k8s-create-secret@v1
+      #   with:
+      #     container-registry-url: korona.azurecr.io
+      #     container-registry-username: ${{ secrets.REGISTRY_USERNAME }}
+      #     container-registry-password: ${{ secrets.REGISTRY_PASSWORD }}
+      #     secret-name: demo-k8s-secret
 
-      - uses: Azure/k8s-deploy@v1
-        with:
-          manifests: |
-            manifests/deployment.yml
-            manifests/service.yml
-          images: |
-            ${{ env.DEPLOY_PACKAGE_NAME }}
-          imagepullsecrets: |
-            demo-k8s-secret
+      # - uses: Azure/k8s-deploy@v1
+      #   with:
+      #     manifests: |
+      #       manifests/deployment.yml
+      #       manifests/service.yml
+      #     images: |
+      #       ${{ env.DEPLOY_PACKAGE_NAME }}
+      #     imagepullsecrets: |
+      #       demo-k8s-secret
 
-      - name: 'Azure logout'
-        run: |
-          az logout
+      # - name: 'Azure logout'
+      #   run: |
+      #     az logout
