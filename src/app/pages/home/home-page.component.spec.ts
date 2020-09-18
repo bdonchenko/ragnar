@@ -39,13 +39,13 @@ describe('HomePageComponent', () => {
     test('constructor', () => {
       const sut = new HomePageComponent(store, updCommand, serverUpdCommand);
       store.counter$.next(1);
-      sut.data$.pipe(take(1)).subscribe(v => expect(v).toBe(1));
+      sut.data$.pipe(take(1)).subscribe((v) => expect(v).toBe(1));
 
       store.serverCounter$.next(1);
-      sut.serverData$.pipe(take(1)).subscribe(v => expect(v).toBe(1));
+      sut.serverData$.pipe(take(1)).subscribe((v) => expect(v).toBe(1));
 
       store.counter$.next(9);
-      sut.serverFilteredData$.pipe(take(1)).subscribe(v => expect(v).toBe(9));
+      sut.serverFilteredData$.pipe(take(1)).subscribe((v) => expect(v).toBe(9));
     });
 
     test('update', () => {

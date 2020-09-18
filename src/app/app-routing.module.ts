@@ -6,17 +6,17 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () =>
-      import('./pages/home/home-page.module').then(m => m.HomePageModule),
+      import('./pages/home/home-page.module').then((m) => m.HomePageModule),
   },
   {
     path: 'tasks',
     loadChildren: () =>
-      import('./pages/tasks/tasks-page.module').then(m => m.TasksPageModule),
+      import('./pages/tasks/tasks-page.module').then((m) => m.TasksPageModule),
   },
   {
     path: '**',
     loadChildren: () =>
-      import('./pages/home/home-page.module').then(m => m.HomePageModule),
+      import('./pages/home/home-page.module').then((m) => m.HomePageModule),
   },
 ];
 

@@ -14,10 +14,12 @@ export class ValuesRepository extends BaseRepository {
 
   getData(): Observable<number> {
     // Here will be call to the server
-    return this.get<[]>('WeatherForecast').pipe(map(d => {
-      this.counter += 1;
-      return d.toString().length + this.counter;
-    }));
+    return this.get<[]>('WeatherForecast').pipe(
+      map((d) => {
+        this.counter += 1;
+        return d.toString().length + this.counter;
+      }),
+    );
     // this.counter += 1;
     // return of(this.counter);
   }
