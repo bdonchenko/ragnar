@@ -13,6 +13,6 @@ export class ServerUpdatedCommand implements ICommand {
   execute() {
     this.valuesRepository
       .getData()
-      .subscribe(value => this.store.serverCounter$.next(value));
+      .subscribe((value) => this.store.serverCounter$.next(value));
   }
 }

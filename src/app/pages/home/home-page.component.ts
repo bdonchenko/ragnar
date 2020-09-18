@@ -24,7 +24,7 @@ export class HomePageComponent {
     this.data$ = store.counter$;
     this.serverData$ = store.serverCounter$;
     this.serverFilteredData$ = store.serverCounter$.pipe(
-      filter(v => v % 3 === 0),
+      filter((v) => v % 3 === 0),
     );
   }
 

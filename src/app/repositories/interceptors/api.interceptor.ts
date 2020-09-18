@@ -22,11 +22,11 @@ export class ApiInterceptor implements HttpInterceptor {
       .append('Access-Control-Allow-Methods', '*')
       .append('Access-Control-Allow-Origin', '*');
 
-    const newReq = req.clone({ headers, url: environment.baseURL + req.url })
+    const newReq = req.clone({ headers, url: environment.baseURL + req.url });
 
     const started = Date.now();
     return next.handle(newReq).pipe(
-      tap(event => {
+      tap((event) => {
         if (event instanceof HttpResponse) {
           const elapsed = Date.now() - started;
           // eslint-disable-next-line no-console

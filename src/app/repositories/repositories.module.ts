@@ -14,4 +14,4 @@ import { ApiInterceptor } from './interceptors/api.interceptor';
     },
   ],
 })
-export class RepositoriesModule { }
+export class RepositoriesModule {}
